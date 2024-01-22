@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.header-area{
+    background-color: #19349d;
+    height: 85px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 5px;
+    
+}
+.left-part{
+    width: 80%;
+    float: left;
+}
+.left-part h2{
+    color: #fff;
+    font-size: 28px;
+}
+.right-part{
+    width: 20%;
+    float: right;
+    padding-top: 27px;
+}
+.right-part a{
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 5px;
+}
+.login-box{
+    width: 585px;
+    margin: 20px auto;
+    clear: both;
+    border: 2px solid #e2dfdf;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.login-box h2{
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: 1px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+.login-form, .register-box{
+    width: 80%;
+    margin: 0 auto;
+}
+.login-form input[type="text"], .login-form input[type="password"]{
+    width:300px;
+    height: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.login-form button{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 7px;
+}
+.register-box{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom:2px solid rgb(167, 1, 1)
+}
+.register-box a{
+    font-size: 16px;
+    margin-left: 10px;
+}
