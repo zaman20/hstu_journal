@@ -72,3 +72,39 @@ body {
     font-size: 16px;
     margin-left: 10px;
 }
+/* ========== Author content ============== */
+.author-content-area{
+    display: flex;
+    width: 85%;
+    margin: 0 auto;
+}
+.author-content-area .left-part{
+    width:25%;
+    padding-right: 20px;
+}
+.author-content-area .middle-part{
+    width: 40%;
+    padding-left: 35px;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+}
+.author-content-area .right-part{
+    width:30%;
+    padding-left: 20px;
+}
+.author-content-area .left-part ul{
+    border: 2px solid #e2dbdb;
+    padding: 20px;
+}
+.author-content-area .middle-part ul li{
+    padding: 5px 5px;
+    display: block;
+}
+.author-content-area .right-part ul li{
+    padding: 5px;
+}
+.author-content-area .right-part ul li a{
+    color:black;
+    font-size: 16px;
+    
+}
