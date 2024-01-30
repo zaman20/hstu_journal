@@ -112,12 +112,14 @@ body {
 }
 
 .form-area {
-    width: 262px;
+    width: 280px;
     border: 2px solid;
     padding: 10px 20px;
     display: flex;
-    overflow: hidden;
     margin-top: 20px;
+    position: relative;
+    height: 200px;
+    overflow: hidden;
 }
 .form-area input{
     width: 260px;
@@ -126,4 +128,12 @@ body {
 }
 .form-box{
     margin-right: 10px;
+}
+#page2,#page3,#page4{
+    position: absolute;
+    left: 300px;
+    transition: 0.3s;
+    visibility: hidden;
+
+
 }
