@@ -98,7 +98,7 @@ body {
     border: 2px solid #e2dbdb;
     padding: 20px;
 }
-.author-content-area .middle-part ul li{
+.author-content-area .middle-part-menu li{
     padding: 5px 5px;
     display: block;
 }
@@ -112,16 +112,16 @@ body {
 }
 
 .form-area {
-    width: 280px;
+    width: 100%;
     border: 2px solid;
     padding: 10px 20px;
     display: flex;
     margin-top: 20px;
     position: relative;
-    height: 200px;
+    height: 332px;
     overflow: hidden;
 }
-.form-area input{
+.form-area input[type='text']{
     width: 260px;
     margin: 5px;
 
@@ -129,11 +129,48 @@ body {
 .form-box{
     margin-right: 10px;
 }
-#page2,#page3,#page4{
+#page2,#page3,#page4,#page5,#page6,#page7,#page8{
     position: absolute;
     left: 300px;
     transition: 0.3s;
     visibility: hidden;
 
 
+}
+.author-content-area .full-width{
+    width: 75%;
+}
+.progress-bar{
+    margin-left: -30px;
+}
+.progress-bar li{
+    display:inline-block !important;
+    padding: 5px 15px;
+    position: relative;
+}
+.progress-bar li a{
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 50%;
+    padding: 15px 20px;
+}
+.progress-bar li::after{
+    content: '';
+    width: 35px;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    top: 17px;
+    left: 69px;
+}
+.progress-bar li:last-child::after{
+    width: 0px;
+    height: 0px;
+   
+}
+.active{
+    background:#19349d;
+    color: #fff !important;
 }
