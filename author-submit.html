@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HSTU in Journal and Research</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,144 +31,86 @@
                 </ul>
             </div>
             <div class="middle-part full-width">
-                
+                <ul class="myprogress-bar">
+                    <li><a href="" id="p1" class="active">1</a></li>
+                    <li><a href="" id="p2">2</a></li>
+                    <li><a href="" id="p3">3</a></li>
+                    <li><a href="" id="p4">4</a></li>
+                    <li><a href="" id="p5">5</a></li>
+                    <li><a href="" id="p6">6</a></li>
+                    <li><a href="" id="p7">7</a></li>
+                    <li><a href="" id="p8">8</a></li>
+                </ul>
                 <div class="form-area">
                     <div class="form-box" id="page1">
-                        <ul class="progress-bar">
-                            <li><a href="" class="active">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="">3</a></li>
-                            <li><a href="">4</a></li>
-                            <li><a href="">5</a></li>
-                            <li><a href="">6</a></li>
-                            <li><a href="">7</a></li>
-                            <li><a href="">8</a></li>
-                        </ul>
                         <h2>Article Type Selection</h2>
-                        <select name="" id="">
+                        <select name="" id="" class="form-select">
                             <option value="">Full Length Article</option>
                             <option value="">Manuscript</option>
                             <option value="">Short length</option>
                         </select>
-                        <button data-id="1" class="next">Next</button>
+                        <button data-id="1" class="next mt-2 btn btn-secondary" >Next</button>
                     </div>
 
-                    <div class="form-box" id="page2">
-                        <ul class="progress-bar">
-                            <li><a href="">1</a></li>
-                            <li><a href="" class="active">2</a></li>
-                            <li><a href="">3</a></li>
-                            <li><a href="">4</a></li>
-                            <li><a href="">5</a></li>
-                            <li><a href="">6</a></li>
-                            <li><a href="">7</a></li>
-                            <li><a href="">8</a></li>
-                        </ul>
+                    <div class="form-box" class="form-control" id="page2">
                         <h2>Attach Files </h2>
                         <input type="file">
-                        <button data-id="2" class="next">Next</button>
+                        <button data-id="2" class="back btn btn-warning">Back</button>
+                        <button data-id="2" class="next btn btn-secondary">Next</button>
                     </div>
 
                     <div class="form-box" id="page3">
-                        <ul class="progress-bar">
-                            <li><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="" class="active">3</a></li>
-                            <li><a href="">4</a></li>
-                            <li><a href="">5</a></li>
-                            <li><a href="">6</a></li>
-                            <li><a href="">7</a></li>
-                            <li><a href="">8</a></li>
-                        </ul>
+                       
                         <h2>Classification </h2>
-                        <input type="checkbox">Biomedical Statistics <br>
-                        <input type="checkbox">Clinical Trials <br>
-                        <input type="checkbox">Cognitive Science <br>
-                        <input type="checkbox">Computional Bilogy <br>
-                        <button data-id="3" class="next">Next</button>
+                      
+                        <input type="checkbox" class="form-check-input">Biomedical Statistics <br>
+                        <input type="checkbox" class="form-check-input">Clinical Trials <br>
+                        <input type="checkbox" class="form-check-input">Cognitive Science <br>
+                        <input type="checkbox" class="form-check-input">Computional Bilogy <br>
+                        <button data-id="3" class="back btn btn-warning mt-2">Back</button>
+                        <button data-id="3" class="next btn btn-secondary mt-2">Next</button>
                     </div>
 
-                    <div class="paper" id="page4">
-                        <ul class="progress-bar">
-                            <li><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="">3</a></li>
-                            <li><a href="" class="active">4</a></li>
-                            <li><a href="">5</a></li>
-                            <li><a href="">6</a></li>
-                            <li><a href="">7</a></li>
-                            <li><a href="">8</a></li>
-                        </ul>
+                    <div class="form-box" id="page4">
+                       
                         <h2>Review Preferences</h2>
-                        <input type="text" placeholder="Suggested Reviewers">
-                        <button data-id="4" class="next">Next</button>
+                        <input type="text" class="form-control" placeholder="Suggested Reviewers">
+                        <button data-id="4" class="back btn btn-warning mt-2">Back</button>
+                        <button data-id="4" class="next btn btn-secondary mt-2">Next</button>
                     </div>
 
-                    <div class="paper" id="page5">
-                        <ul class="progress-bar">
-                            <li><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="">3</a></li>
-                            <li><a href="">4</a></li>
-                            <li><a href="" class="active">5</a></li>
-                            <li><a href="">6</a></li>
-                            <li><a href="">7</a></li>
-                            <li><a href="">8</a></li>
-                        </ul>
+                    <div class="form-box" id="page5">
+                        
                         <h2>Review Preferences</h2>
                         <label for="">If English is not your first language,has your paper been edited by a native English Speaker?</label>
-                        <br><input type="radio">Yes <br>
-                        <input type="radio">No <br>
-                        <input type="radio">Not Applicable <br>
-                        <button data-id="5" class="next">Next</button>
+                        <br><input type="radio" class="form-check-input">Yes <br>
+                        <input type="radio" class="form-check-input">No <br>
+                        <input type="radio" class="form-check-input">Not Applicable <br>
+                        <button data-id="5" class="back btn btn-warning mt-2">Back</button>
+                        <button data-id="5" class="next btn btn-secondary mt-2">Next</button>
                     </div>
 
-                    <div class="paper" id="page6">
-                        <ul class="progress-bar">
-                            <li><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="">3</a></li>
-                            <li><a href="">4</a></li>
-                            <li><a href="" >5</a></li>
-                            <li><a href="" class="active">6</a></li>
-                            <li><a href="">7</a></li>
-                            <li><a href="">8</a></li>
-                        </ul>
+                    <div class="form-box" id="page6">
+                       
                         <h2>Comments</h2>
                         <label for="">Enter Comments</label>
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
-                        <button data-id="6" class="next">Next</button>
+                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                        <button data-id="6" class="back btn btn-warning mt-2">Back</button>
+                        <button data-id="6" class="next btn btn-secondary mt-2">Next</button>
                     </div>
 
-                    <div class="paper" id="page7">
-                        <ul class="progress-bar">
-                            <li><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="">3</a></li>
-                            <li><a href="">4</a></li>
-                            <li><a href="">5</a></li>
-                            <li><a href="">6</a></li>
-                            <li><a href="" class="active">7</a></li>
-                            <li><a href="">8</a></li>
-                        </ul>
+                    <div class="form-box" id="page7">
+                        
                         <h2>Manuscript Data</h2>
-                        <input type="text" placeholder="Title"> <br>
-                        <input type="text" placeholder="Abstract"> <br>
-                        <input type="text" placeholder="Keyword">
-                        <button data-id="7" class="next">Next</button>
+                        <input type="text" class="form-control" placeholder="Title"> <br>
+                        <input type="text" class="form-control" placeholder="Abstract"> <br>
+                        <input type="text" class="form-control" placeholder="Keyword">
+                        <button data-id="7" class="back btn btn-warning mt-2">Back</button>
+                        <button data-id="7" class="next btn btn-secondary mt-2">Next</button>
                     </div>
 
-                    <div class="paper" id="page8">
-                        <ul class="progress-bar">
-                            <li><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="">3</a></li>
-                            <li><a href="">4</a></li>
-                            <li><a href="" >5</a></li>
-                            <li><a href="">6</a></li>
-                            <li><a href="">7</a></li>
-                            <li><a href="" class="active">8</a></li>
-                        </ul>
+                    <div class="form-box" id="page8">
+                        
                         <h2>Menuscript Data</h2>
                         <input type="text">
                         <button data-id="8" class="next">Next</button>
