@@ -4,20 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HSTU in Journal and Research</title>
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-container">
-        <div class="header-area">
-            <div class="left-part">
-                <h2> HSTU in Journal and Research</h2>
-            </div>
-            <div class="right-part">
-                <a href="">Login</a>
-                <a href="">Register</a>
-            </div>
-        </div>
-
+    <div class="main-container login-box-wrapper">
         <div class="login-box">
             <h2>Welcome to Editorial Manager  for
                 HSTU'ians in Journal and Research</h2>
