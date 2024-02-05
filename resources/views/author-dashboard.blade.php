@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSTU in Journal and Research</title>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+@extends('template.body')
+@section('content')
     <div class="main-container">
-        <div class="header-area">
-            <div class="left-part">
-                <h2> HSTU in Journal and Research</h2>
-            </div>
-            <div class="right-part">
-                <a href="">Zaman</a>
-                <a href="">Log Out</a>
-            </div>
-        </div>
+      @include('template.header')
 
         <div class="author-content-area">
             <div class="left-part">
@@ -72,14 +56,5 @@
        
     </div>
 
-    <div class="header-area">
-        <div class="left-part">
-            <h2> HSTU in Journal and Research</h2>
-        </div>
-        <div class="right-part">
-            <a href="">Zaman</a>
-            <a href="">Log Out</a>
-        </div>
-    </div>
-</body>
-</html>
+    @include('template.header')
+@endsection()
