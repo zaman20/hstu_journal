@@ -13,6 +13,13 @@ body a, p,span{
     font-family: 'Noto Sans', sans-serif;
     font-weight: 300;
 }
+
+.login-box-wrapper{
+    background-color: #0059a4;
+    height: 100vh;
+    padding: 20px 0px;
+}
+
 .header-area{
     background-color: #19349d;
     height: 85px;
@@ -45,11 +52,12 @@ body a, p,span{
     width: 585px;
     margin: 20px auto;
     clear: both;
-    border: 2px solid #e2dfdf;
+    border: 2px solid wheat;
     padding-top: 10px;
     padding-bottom: 15px;
     padding-left: 20px;
     padding-right: 20px;
+    background: white;
 }
 .login-box h2{
     text-align: center;
@@ -126,6 +134,9 @@ body a, p,span{
 .author-content-area .middle-part-menu li{
     padding: 5px 5px;
     display: block;
+}
+.author-content-area .middle-part ul li a{
+    text-decoration: none;
 }
 .author-content-area .right-part ul li{
     padding: 5px;

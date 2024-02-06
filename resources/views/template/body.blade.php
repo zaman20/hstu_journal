@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php echo $__env->yieldContent('content'); ?>
+    @yield('content')
     
     <script src="js/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/myScript.js"></script>
 </body>
-</html><?php /**PATH C:\xampp\htdocs\hstu_journal\resources\views/template/body.blade.php ENDPATH**/ ?>
+</html>

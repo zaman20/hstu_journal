@@ -1,12 +1,13 @@
-<?php $__env->startSection('content'); ?>
+@extends('template.body')
+@section('content')
     <div class="main-container">
-      <?php echo $__env->make('template.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+      @include('template.header')
 
         <div class="author-content-area">
             <div class="left-part">
                 <h3>New Submission</h3>
                 <ul>
-                    <li><a href="<?php echo e(url('/author-submit')); ?>">Submit New Manuscript</a></li>
+                    <li><a href="{{url('/author-submit')}}">Submit New Manuscript</a></li>
                     <li><a href="">Submissions Sent Back to Author  (0)</a></li>
                     <li><a href="">Incomplete Submissions  (1)</a></li>
                     <li><a href="">Submissions Waiting for Author's Approval  (0)</a></li>
@@ -53,21 +54,19 @@
             </div>
         </div>
 
-        <?php if(session()->has('msg')): ?>
-        <?php echo e(session('msg')); ?>
-
+        @if(session()->has('msg'))
+        {{session('msg')}}
         <!-- <script>
             alert(hi);
             Swal.fire({
             title: "Good job!",
-            text: "<?php echo e(session('msg')); ?>",
+            text: "{{session('msg')}}",
             icon: "success"
             });
         </script> -->
-        <?php endif; ?>
+        @endif
        
     </div>
 
-    <?php echo $__env->make('template.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('template.body', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\hstu_journal\resources\views/author-dashboard.blade.php ENDPATH**/ ?>
+    @include('template.header')
+@endsection()
