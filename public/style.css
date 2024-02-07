@@ -108,6 +108,7 @@ body a, p,span{
 .author-content-area .middle-part{
     width: 45%;
     padding-left: 35px;
+    padding-top: 10px;
     border-left: 2px solid gray;
  
 }
@@ -217,4 +218,8 @@ body a, p,span{
 .active{
     background:#19349d;
     color: #fff !important;
+}
+a.btn{
+    padding: 3px 10px !important;
+    padding-bottom: 5px !important;
 }

@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/author-dashboard',[AppController::class,'authorDashboard']);
 Route::get('/author-submit',[AppController::class,'authorSubmit']);
 Route::post('/paper-submit',[AppController::class,'paperSubmit']);
+Route::get('/author-pending-paper',[AppController::class,'authorPending']);
+Route::get('/author-paper-view/{id}',[AppController::class,'authorPaperView']);
+

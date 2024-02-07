@@ -47,4 +47,14 @@ class AppController extends Controller
         return view('author-dashboard')->with('msg','Paper Submited, Please wait for the review.Thanks!');
 
     }
+
+    public function authorPending(){
+        $papers = Paper::select('*')->where('status','=',0)->get();
+        return view('author-pending',compact('papers'));
+    }
+
+    public function authorPaperView($id){
+        $paper = Paper::select('*')->where('id','=',$id)->first();
+        return view('author-paper-view',compact('paper'));
+    }
 }
