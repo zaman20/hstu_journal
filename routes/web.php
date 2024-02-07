@@ -30,4 +30,6 @@ Route::get('/editor-pending-paper',[AppController::class,'editorPendingPaper']);
 Route::post('/editor-comment',[AppController::class,'editorComment']);
 Route::post('/editor-to-revision',[AppController::class,'editortoRevision']);
 Route::get('/incomplete-submission',[AppController::class,'incompleteSubmission']);
+Route::get('/reviewers',[AppController::class,'reviewers']);
+Route::post('/add-reviewer',[AppController::class,'addReviewer']);
 

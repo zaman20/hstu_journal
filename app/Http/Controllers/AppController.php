@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Paper;
 use App\Models\User;
+use App\Models\Reviewer;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -143,5 +144,23 @@ class AppController extends Controller
     public function incompleteSubmission(){
         $papers = Paper::select('*')->where('status','=',1)->get();
         return view('editor-pending',compact('papers'));
+    }
+
+    public function reviewers(){
+        $reviewers = Reviewer::select('*')->get();
+        return view('reviewers',compact('reviewers'));
+    }
+
+    public function addReviewer(Request $request){
+        $name = $request->has('name') ? $request->get('name'):'';
+        $email = $request->has('email') ? $request->get('email'):'';
+        $pass = $request->has('password') ? $request->get('password'):'';
+        Reviewer::insert([
+            'name'=>$name,
+            'email'=>$email,
+            'password'=>$pass,
+        ]);
+
+        return back()->with('msg','Account created, please login');
     }
 }
