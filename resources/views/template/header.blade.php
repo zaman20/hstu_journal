@@ -3,7 +3,9 @@
         <h2> HSTU in Journal and Research</h2>
     </div>
     <div class="right-part">
-        <a href="">Zaman</a>
-        <a href="">Log Out</a>
+        @if(session()->has('user'))
+        <a href="">{{session('user')}}</a>
+        @endif
+        <a href="{{url('/logout')}}">Log Out</a>
     </div>
 </div>

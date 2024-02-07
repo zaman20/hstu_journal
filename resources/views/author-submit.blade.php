@@ -85,7 +85,7 @@
                     <input name="title" type="text" class="form-control" placeholder="Title"> <br>
                     <input name="abstract" type="text" class="form-control" placeholder="Abstract"> <br>
                     <input name="keyword" type="text" class="form-control" placeholder="Keyword">
-                    
+                    <input type="hidden" value="{{session('user')}}" name="author">
                     <button  class="paper-submit btn btn-secondary mt-2">Submit</button>
                 </div>
                 </form>

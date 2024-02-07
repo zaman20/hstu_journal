@@ -4,14 +4,7 @@
 
         <div class="author-content-area">
             <div class="left-part">
-                <h3>New Submission</h3>
-                <ul>
-                    <li><a href="<?php echo e(url('/author-submit')); ?>">Submit New Manuscript</a></li>
-                    <li><a href="">Submissions Sent Back to Author  (0)</a></li>
-                    <li><a href="">Incomplete Submissions  (1)</a></li>
-                    <li><a href="">Submissions Waiting for Author's Approval  (0)</a></li>
-                    <li><a href="">Submissions Being Processed  (0)</a></li>
-                </ul>
+                <?php echo $__env->make('template.author-menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </div>
             <div class="middle-part pt-3">
                 <h3>Revision</h3>

@@ -23,4 +23,6 @@ Route::get('/author-pending-paper',[AppController::class,'authorPending']);
 Route::get('/author-paper-view/{id}',[AppController::class,'authorPaperView']);
 Route::get('/author-register',[AppController::class,'authorRegisterPage']);
 Route::post('/add-author',[AppController::class,'addAuthor']);
+Route::post('/auth-login',[AppController::class,'loginAuth']);
+Route::get('/logout',[AppController::class,'logout']);
 

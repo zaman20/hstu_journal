@@ -27,7 +27,7 @@ class AppController extends Controller
         $title = $request->has('title') ? $request->get('title'):'';
         $abstract = $request->has('abstract') ? $request->get('abstract'):'';
         $keyword = $request->has('keyword') ? $request->get('keyword'):'';
-        $author = 'zaman';
+        $author = $request->has('author') ? $request->get('author'):'';;
         $file = $_FILES['authorfile']['name'];
         $fileStore = 'upload/'.$file;
       
@@ -76,5 +76,33 @@ class AppController extends Controller
         ]);
 
         return redirect('/')->with('msg','Account created, please login');
+    }
+
+    public function loginAuth(Request $request){
+        $name = $request->has('name') ? $request->get('name'):'';
+        $pass = $request->has('password') ? $request->get('password'):'';
+        $type = $request->has('type') ? $request->get('type'):'';
+
+        $user = User::select('*')->where('name','=',$name)
+                ->where('type','=',$type)->first();
+        $userCount = $user->count();
+
+        if($userCount >0){
+            $dbuser = $user->name;
+            $dbpass = $user->password;
+            if($name == $dbuser && $pass == $dbpass){
+                session(['user' => $name]);
+                return redirect('/author-dashboard');
+            }
+        }else{
+            return back()->with('msg','Login Details Is invalid!');
+        }
+        
+       
+    }
+
+    public function logout(){
+        session_unset();
+        return redirect('/');
     }
 }

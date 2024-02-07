@@ -8,23 +8,26 @@
 </head>
 <body>
     <div class="main-container login-box-wrapper">
+            
+        <div class="login-box">
             @if(session()->has('msg'))
                 {{session('msg')}}
             @endif
-        <div class="login-box">
             <h2>Welcome to Editorial Manager  for
                 HSTU'ians in Journal and Research</h2>
             <div class="login-form">
-                <label for="">Username:</label>
-                <input type="text"> <br>
-                <label for="">Password: </label>
-                
-                <input type="password">
-
-                <button>Author Login</button>
-                <button>Reviewer Login</button>
-                <button>Editor Login</button>
-                <button>Publisher Login</button>
+                <form action="/auth-login" id="loginForm" method="post">
+                    @csrf
+                    <label for="">Username:</label>
+                    <input type="text" name="name"> <br>
+                    <label for="">Password: </label>
+                    <input type="password" name="password">
+                    <input type="hidden" class="type" name="type">
+                </form>
+                <button class="author-login">Author Login</button>
+                <button class="reviewer-login">Reviewer Login</button>
+                <button class="editor-login">Editor Login</button>
+                <button class="publisher-login">Publisher Login</button>
             </div>
 
             <div class="register-box">
@@ -35,5 +38,14 @@
            
         </div>
     </div>
+
+
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script>
+        $('.author-login').on('click',function(){
+            $('.type').val('author');
+            $('#loginForm').submit();
+        });
+    </script>
 </body>
 </html>
