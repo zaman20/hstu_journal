@@ -2,7 +2,7 @@
 <ul>
     @if(session('type')=='author')
     <li><a href="{{url('/author-submit')}}">Submit New Manuscript</a></li>
-    <li><a href="">Submissions Sent Back to Author</a></li>
+    <li><a href="{{url('/author-incomplete-submission')}}">Submissions Need Revision</a></li>
     <li><a href="">Incomplete Submissions</a></li>
     <li><a href="{{url('/author-pending-paper')}}">Submissions Waiting for Editor Approval</a></li>
     <li><a href="">Submissions Being Processed</a></li>

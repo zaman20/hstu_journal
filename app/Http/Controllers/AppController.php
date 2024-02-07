@@ -51,7 +51,9 @@ class AppController extends Controller
     }
 
     public function authorPending(){
-        $papers = Paper::select('*')->where('status','=',0)->get();
+        $author = session('user');
+        $papers = Paper::select('*')->where('status','=',0)->
+        where('author','=',$author)->get();
         return view('author-pending',compact('papers'));
     }
 
@@ -145,7 +147,13 @@ class AppController extends Controller
         $papers = Paper::select('*')->where('status','=',1)->get();
         return view('editor-pending',compact('papers'));
     }
-
+    public function authorIncompleteSubmission(){
+        $author = session('user');
+        $papers = Paper::select('*')->where('status','=',1)->
+        where('author','=',$author)->get();
+        return view('editor-pending',compact('papers'));
+    }
+    
     public function reviewers(){
         $reviewers = Reviewer::select('*')->get();
         return view('reviewers',compact('reviewers'));
