@@ -26,7 +26,13 @@
                     <td>{{$paper->title}}</td>
                     <td>{{$paper->abstract}}</td>
                     <td>{{$paper->article_type}}</td>
-                    <td><span  class="bg-info">Pending</span></td>
+                    <td>
+                        @if($paper->status == 0)
+                        <span class="bg-info">Pending For Editor Approval</span>
+                        @elseif($paper->status == 1)
+                        <span class="bg-danger">In Revision</span>
+                        @endif
+                    </td>
                     <td>{{$paper->reviewers}}</td>
                     <td>
                         <a href="{{url('/paper-view/'.$paper->id)}}" class="btn btn-primary" title="View"><i class="fa-solid fa-eye"></i></a>

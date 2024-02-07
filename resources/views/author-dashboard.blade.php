@@ -5,7 +5,7 @@
 
         <div class="author-content-area">
             <div class="left-part">
-                @include('template.author-menu')
+                @include('template.menu')
             </div>
             <div class="middle-part pt-3">
                 <h3>Revision</h3>

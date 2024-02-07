@@ -46,6 +46,10 @@
             $('.type').val('author');
             $('#loginForm').submit();
         });
+        $('.editor-login').on('click',function(){
+            $('.type').val('editor');
+            $('#loginForm').submit();
+        });
     </script>
 </body>
 </html>

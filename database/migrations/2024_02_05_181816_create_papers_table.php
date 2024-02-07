@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('reviewers')->nullable();
             $table->string('language');
             $table->string('author_comment')->nullable();
+            $table->string('editor_comment')->nullable();
+            $table->string('reviewer_comment')->nullable();
             $table->string('title');
             $table->string('abstract');
             $table->string('keyword');

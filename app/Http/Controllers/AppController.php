@@ -54,9 +54,9 @@ class AppController extends Controller
         return view('author-pending',compact('papers'));
     }
 
-    public function authorPaperView($id){
+    public function paperView($id){
         $paper = Paper::select('*')->where('id','=',$id)->first();
-        return view('author-paper-view',compact('paper'));
+        return view('paper-view',compact('paper'));
     }
 
     public function authorRegisterPage(){
@@ -78,24 +78,35 @@ class AppController extends Controller
         return redirect('/')->with('msg','Account created, please login');
     }
 
+    public function editorDashboard(){
+        return view('editor-dashboard');
+    }
+
     public function loginAuth(Request $request){
         $name = $request->has('name') ? $request->get('name'):'';
         $pass = $request->has('password') ? $request->get('password'):'';
         $type = $request->has('type') ? $request->get('type'):'';
 
         $user = User::select('*')->where('name','=',$name)
-                ->where('type','=',$type)->first();
-        $userCount = $user->count();
+        ->where('type','=',$type)->first();
+        //$userCount = $user->count();
 
-        if($userCount >0){
+        if($user){
             $dbuser = $user->name;
             $dbpass = $user->password;
-            if($name == $dbuser && $pass == $dbpass){
-                session(['user' => $name]);
-                return redirect('/author-dashboard');
+            $dbtype = $user->type;
+            session(['user' => $dbuser,'type'=>$dbtype]);
+            if($name==$dbuser && $pass==$dbpass){
+                if($type==$dbtype && $type=='author'){
+                    return redirect('/author-dashboard');
+                }else if($type =='editor' && $type=$dbtype){
+                    return redirect('/editor-dashboard');
+                }
+            }else{
+                return back()->with('msg','Incorrect Login Details');
             }
         }else{
-            return back()->with('msg','Login Details Is invalid!');
+            return back()->with('msg','No Data Found,You need to Register First');
         }
         
        
@@ -104,5 +115,33 @@ class AppController extends Controller
     public function logout(){
         session_unset();
         return redirect('/');
+    }
+
+    public function editorPendingPaper(){
+        $papers = Paper::select('*')->where('status','=',0)->get();
+        return view('editor-pending',compact('papers'));
+    }
+
+    public function editorComment(Request $request){
+        $id = $request->has('pid') ? $request->get('pid'):'';
+        $comment = $request->has('comment') ? $request->get('comment'):'';
+
+        Paper::where('id','=',$id)->update([
+            'editor_comment'=>$comment,
+        ]);
+        return back()->with('msg','Comment Added');
+    }
+
+    public function editortoRevision(Request $request){
+        $id = $request->has('pid') ? $request->get('pid'):'';
+        Paper::where('id','=',$id)->update([
+            'status'=>1,
+        ]);
+        return back()->with('msg','Send For Revision');
+    }
+
+    public function incompleteSubmission(){
+        $papers = Paper::select('*')->where('status','=',1)->get();
+        return view('editor-pending',compact('papers'));
     }
 }

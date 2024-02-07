@@ -47,6 +47,10 @@
             $('.type').val('author');
             $('#loginForm').submit();
         });
+        $('.editor-login').on('click',function(){
+            $('.type').val('editor');
+            $('#loginForm').submit();
+        });
     </script>
 </body>
 </html><?php /**PATH C:\xampp\htdocs\hstu_journal\resources\views/login.blade.php ENDPATH**/ ?>
