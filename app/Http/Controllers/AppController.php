@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Paper;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -56,5 +57,24 @@ class AppController extends Controller
     public function authorPaperView($id){
         $paper = Paper::select('*')->where('id','=',$id)->first();
         return view('author-paper-view',compact('paper'));
+    }
+
+    public function authorRegisterPage(){
+        return view('author-register');
+    }
+
+    public function addAuthor(Request $request){
+        $name = $request->has('name') ? $request->get('name'):'';
+        $email = $request->has('email') ? $request->get('email'):'';
+        $pass = $request->has('password') ? $request->get('password'):'';
+        $type ='author';
+        User::insert([
+            'name'=>$name,
+            'email'=>$email,
+            'password'=>$pass,
+            'type'=>$type,
+        ]);
+
+        return redirect('/')->with('msg','Account created, please login');
     }
 }

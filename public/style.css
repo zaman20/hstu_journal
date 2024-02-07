@@ -71,7 +71,7 @@ body a, p,span{
     width: 80%;
     margin: 0 auto;
 }
-.login-form input[type="text"], .login-form input[type="password"]{
+.login-form input[type="text"], .login-form input[type="password"], .login-form input[type="email"]{
     width:300px;
     height: 20px;
     margin-top: 5px;
