@@ -36,7 +36,7 @@
                     <td>{{$paper->reviewers}}</td>
                     <td>
                         <a href="{{url('/paper-view/'.$paper->id)}}" class="btn btn-primary" title="View"><i class="fa-solid fa-eye"></i></a>
-                        <a href="#" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash"></i></a>
+                        <a href="#" class="btn btn-danger dlt-btn" title="Delete"><i class="fa-solid fa-trash"></i></a>
                     </td>
                     
                </tr>
@@ -48,7 +48,13 @@
     </div>
 
 </div>
+<!-- ================================================== -->
+<form action="/dlt-paper" id="dltForm" method="post">
+    @csrf
+    <input type="hidden" id="setId" name="get_id">
 
+  </form>
+<!-- ================================================== -->
 @include('template.header')
 
 @endsection()

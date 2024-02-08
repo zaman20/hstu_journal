@@ -33,4 +33,7 @@ Route::get('/incomplete-submission',[AppController::class,'incompleteSubmission'
 Route::get('/incomplete-submission',[AppController::class,'incompleteSubmission']);
 Route::get('/author-incomplete-submission',[AppController::class,'authorIncompleteSubmission']);
 Route::post('/add-reviewer',[AppController::class,'addReviewer']);
+Route::get('/reviewers',[AppController::class,'reviewers']);
+Route::post('/dlt-reviewer',[AppController::class,'dltReviewer']);
+Route::post('/dlt-paper',[AppController::class,'dltPaper']);
 

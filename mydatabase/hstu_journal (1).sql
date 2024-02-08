@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2024 at 10:01 PM
+-- Generation Time: Feb 08, 2024 at 02:28 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -132,28 +132,6 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reviwers`
---
-
-CREATE TABLE `reviwers` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `reviwers`
---
-
-INSERT INTO `reviwers` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'Nafis', 'nafis@gmail.com', '1234', '2024-02-07 20:49:56', '2024-02-07 20:49:56');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -174,7 +152,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `type`, `created_at`, `updated_at`) VALUES
 (1, 'Zaman', 'zamanador111@gmail.com', '1234', 'author', NULL, NULL),
 (2, 'ador', 'adorzaman18@gmail.com', '1234', 'editor', '2024-02-07 16:14:35', '2024-02-07 16:14:35'),
-(3, 'arju', 'arju@gmail.com', '1234', 'author', '2024-02-07 21:00:46', '2024-02-07 21:00:46');
+(3, 'arju', 'arju@gmail.com', '1234', 'author', '2024-02-07 21:00:46', '2024-02-07 21:00:46'),
+(5, 'Mamun sir', 'mamun@gmail.com', '1234', 'reviewer', '2024-02-08 12:37:22', '2024-02-08 12:37:22');
 
 --
 -- Indexes for dumped tables
@@ -214,12 +193,6 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indexes for table `reviwers`
---
-ALTER TABLE `reviwers`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -254,16 +227,10 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `reviwers`
---
-ALTER TABLE `reviwers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

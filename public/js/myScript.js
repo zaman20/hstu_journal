@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    let pageNum = 1;
-   $('.next').on('click',function(){
+  let pageNum = 1;
+  $('.next').on('click',function(){
         let id = $(this).data('id');
         let next = id+1;
         let prev = id;
@@ -15,8 +15,9 @@ $(document).ready(function(){
         $(nextPage).css('visibility','visible');
         $(prevPage).hide();
 
-   });
-   $('.back').on('click',function(){
+  });
+
+  $('.back').on('click',function(){
      let id = $(this).data('id');
      let next = id;
      let prev = id-1;
@@ -32,8 +33,31 @@ $(document).ready(function(){
      $(prevPage).css('visibility','visible');
      
 
-});
+  });
 
+  $('.dlt-btn').on('click',function(){
+    let id = $(this).data('id');
+    $('#setId').val(id);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+        $('#dltForm').submit();
+      }
+    });
+  })
 
 
 });

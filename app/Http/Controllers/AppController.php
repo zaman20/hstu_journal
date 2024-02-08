@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Paper;
 use App\Models\User;
-use App\Models\Reviewer;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -155,7 +154,7 @@ class AppController extends Controller
     }
     
     public function reviewers(){
-        $reviewers = Reviewer::select('*')->get();
+        $reviewers = User::select('*')->where('type','=','reviewer')->get();
         return view('reviewers',compact('reviewers'));
     }
 
@@ -163,12 +162,28 @@ class AppController extends Controller
         $name = $request->has('name') ? $request->get('name'):'';
         $email = $request->has('email') ? $request->get('email'):'';
         $pass = $request->has('password') ? $request->get('password'):'';
-        Reviewer::insert([
+        $type = 'reviewer';
+        User::insert([
             'name'=>$name,
             'email'=>$email,
             'password'=>$pass,
+            'type'=>$type,
         ]);
 
-        return back()->with('msg','Account created, please login');
+        return back()->with('msg','Account created');
+    }
+
+    public function dltReviewer(Request $request){
+        $id = $request->has('get_id') ? $request->get('get_id'):'';
+        User::where('id','=',$id)->delete();
+
+        return back()->with('msg','Deleted!');
+    }
+
+    public function dltPaper(Request $request){
+        $id = $request->has('get_id') ? $request->get('get_id'):'';
+        Paper::where('id','=',$id)->delete();
+
+        return back()->with('msg','Deleted!');
     }
 }

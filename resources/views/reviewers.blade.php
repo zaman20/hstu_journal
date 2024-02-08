@@ -19,7 +19,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Reviewer</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -55,7 +55,7 @@
                     <td>{{$paper->name}}</td>
                     <td>{{$paper->email}}</td>
                     <td>
-                        <a href="#" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash"></i></a>
+                        <a href="#" data-id="{{$paper->id}}" class="btn btn-danger dlt-btn" title="Delete"><i class="fa-solid fa-trash"></i></a>
                     </td>
                     
                </tr>
@@ -64,6 +64,14 @@
         </div>
     </div>
 </div>
+
+<!-- ================================================== -->
+  <form action="/dlt-reviewer" id="dltForm" method="post">
+    @csrf
+    <input type="hidden" id="setId" name="get_id">
+
+  </form>
+<!-- ================================================== -->
 
 @include('template.header')
 
