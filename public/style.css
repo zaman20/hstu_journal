@@ -101,15 +101,12 @@ body a, p,span{
 }
 .author-content-area .left-part{
     width:20%;
-    padding-right: 20px;
-    padding-left: 20px;
     background-color: #19349d;
 }
 .author-content-area .middle-part{
     width: 45%;
     padding-left: 35px;
     padding-top: 10px;
-    border-left: 2px solid gray;
  
 }
 .author-content-area .right-part{
@@ -123,6 +120,7 @@ body a, p,span{
 .author-content-area .left-part ul li{
     display: block;
     padding: 5px;
+    margin-right: -22px;
 }
 .author-content-area .left-part ul li a{
     color: #fff;
@@ -222,4 +220,10 @@ body a, p,span{
 a.btn{
     padding: 3px 10px !important;
     padding-bottom: 5px !important;
+}
+.menuactive{
+    background: rgb(255, 255, 255);
+}
+.author-content-area .left-part ul li.menuactive a {
+    color: black !important;
 }
