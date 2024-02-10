@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <td>Author</td>
-                    <td>{{$paper->author}}</td>
+                    <td>{{$author->name}}</td>
                 </tr>
                 <tr>
                     <td>Author Comments</td>
@@ -54,9 +54,27 @@
                 <tr>
                     <td>File</td>
                     <td>
-                        <a href="/{{$paper->files}}" download class="btn btn-success">Download File <i class="fa-solid fa-cloud-arrow-down"></i></a></td>
+                        <a href="/{{$paper->files}}" download class="btn btn-success">Download File <i class="fa-solid fa-cloud-arrow-down"></i></a>
+                    </td>
                 </tr>
            </table>
+
+           @if($paper->status == 1)
+            <h3>Editor Suggestion</h3>
+            <table class="table table-info">
+                    <tr>
+                        <td>Editor Comments:</td>
+                        <td> File:</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>{{$paper->editor_comment}}</td>
+                        <td>
+                        <a href="/{{$paper->files}}" download class="btn btn-danger">Download File <i class="fa-solid fa-cloud-arrow-down"></i></a>
+                        </td>
+                    </tr>
+            </table>
+            @endif
 
            @if(session('type')=='editor')
            <form action="/editor-comment" method="post" enctype="multipart/filedata">

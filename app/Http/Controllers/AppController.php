@@ -19,7 +19,7 @@ class AppController extends Controller
 
     public function paperSubmit(Request $request){
         $type = $request->has('type') ? $request->get('type'):'';
-        //$file = $request->hasFile('authorfile') ? $request->get('authorfile'):'';
+       
         $class = $request->has('classification') ? $request->get('classification'):'';
         $reviewers = $request->has('reviewers') ? $request->get('reviewers'):'';
         $language = $request->has('language') ? $request->get('language'):'';
@@ -50,7 +50,7 @@ class AppController extends Controller
     }
 
     public function authorPending(){
-        $author = session('user');
+        $author = session('id');
         $papers = Paper::select('*')->where('status','=',0)->
         where('author','=',$author)->get();
         return view('author-pending',compact('papers'));
@@ -58,7 +58,8 @@ class AppController extends Controller
 
     public function paperView($id){
         $paper = Paper::select('*')->where('id','=',$id)->first();
-        return view('paper-view',compact('paper'));
+        $author = User::select('*')->where('id','=',$paper->author)->first();
+        return view('paper-view',compact('paper','author'));
     }
 
     public function authorRegisterPage(){
@@ -94,10 +95,11 @@ class AppController extends Controller
         //$userCount = $user->count();
 
         if($user){
+            $user_id = $user->id;
             $dbuser = $user->name;
             $dbpass = $user->password;
             $dbtype = $user->type;
-            session(['user' => $dbuser,'type'=>$dbtype]);
+            session(['user' => $dbuser,'type'=>$dbtype,'id'=>$user_id]);
             if($name==$dbuser && $pass==$dbpass){
                 if($type==$dbtype && $type=='author'){
                     return redirect('/author-dashboard');
@@ -142,12 +144,34 @@ class AppController extends Controller
         return back()->with('msg','Send For Revision');
     }
 
-    public function incompleteSubmission(){
-        $papers = Paper::select('*')->where('status','=',1)->get();
+    public function incompleteSubmission($user){
+        $type = User::select('type')->where('id','=',$user)->first();
+        $papers ='';
+        if($type->type == 'author'){
+            $papers = Paper::select('*')->where('author','=',$user)
+            ->where('status','=',1)->get();
+        }else{
+            $papers = Paper::select('*')->where('status','=',1)->get();
+        }
+        
         return view('editor-pending',compact('papers'));
     }
+
+    public function processedPaper($user){
+        $type = User::select('type')->where('id','=',$user)->first();
+        $papers ='';
+        if($type->type == 'author'){
+            $papers = Paper::select('*')->where('author','=',$user)
+            ->where('status','=',2)->get();
+        }else{
+            $papers = Paper::select('*')->where('status','=',2)->get();
+        }
+        
+        return view('editor-pending',compact('papers'));
+    }
+
     public function authorIncompleteSubmission(){
-        $author = session('user');
+        $author = session('id');
         $papers = Paper::select('*')->where('status','=',1)->
         where('author','=',$author)->get();
         return view('editor-pending',compact('papers'));

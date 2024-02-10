@@ -25,13 +25,14 @@ Route::get('/author-register',[AppController::class,'authorRegisterPage']);
 Route::post('/add-author',[AppController::class,'addAuthor']);
 Route::post('/auth-login',[AppController::class,'loginAuth']);
 Route::get('/logout',[AppController::class,'logout']);
+Route::get('/processed-paper/user={user}',[AppController::class,'processedPaper']);
 
 Route::get('/editor-dashboard',[AppController::class,'editorDashboard'])->name('editor1');
 Route::get('/editor-pending-paper',[AppController::class,'editorPendingPaper'])->name('editor2');
 Route::post('/editor-comment',[AppController::class,'editorComment']);
 Route::post('/editor-to-revision',[AppController::class,'editortoRevision']);
-Route::get('/incomplete-submission',[AppController::class,'incompleteSubmission'])->name('editor4');
-Route::get('/incomplete-submission',[AppController::class,'incompleteSubmission']);
+Route::get('/incomplete-submission/user={user}',[AppController::class,'incompleteSubmission'])->name('editor4');
+
 Route::get('/author-incomplete-submission',[AppController::class,'authorIncompleteSubmission']);
 Route::post('/add-reviewer',[AppController::class,'addReviewer']);
 Route::get('/reviewers',[AppController::class,'reviewers'])->name('editor3');
