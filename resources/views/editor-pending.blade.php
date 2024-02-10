@@ -30,10 +30,12 @@
                         @if($paper->status == 0)
                         <span class="bg-info">Pending For Editor Approval</span>
                         @elseif($paper->status == 1)
-                        <span class="bg-danger">In Revision</span>
+                            <span class="bg-danger">In Revision</span>
+                        @elseif($paper->status == 2)
+                            <span class="bg-warning">In Review</span>
                         @endif
                     </td>
-                    <td>{{$paper->reviewers}}</td>
+                    <td>{{$paper->name}}</td>
                     <td>
                         <a href="{{url('/paper-view/'.$paper->id)}}" class="btn btn-primary" title="View"><i class="fa-solid fa-eye"></i></a>
                         <a href="#" class="btn btn-danger dlt-btn" title="Delete"><i class="fa-solid fa-trash"></i></a>

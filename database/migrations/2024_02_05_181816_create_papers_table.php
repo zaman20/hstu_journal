@@ -25,6 +25,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('abstract');
             $table->string('keyword');
+            $table->integer('status');
+            $table->string('editor_file');
+            $table->integer('selected_reviewer');
             $table->timestamps();
         });
     }

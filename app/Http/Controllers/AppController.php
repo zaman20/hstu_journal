@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Paper;
 use App\Models\User;
@@ -59,7 +59,8 @@ class AppController extends Controller
     public function paperView($id){
         $paper = Paper::select('*')->where('id','=',$id)->first();
         $author = User::select('*')->where('id','=',$paper->author)->first();
-        return view('paper-view',compact('paper','author'));
+        $reviewers = User::select('*')->where('type','=','reviewer')->get();
+        return view('paper-view',compact('paper','author','reviewers'));
     }
 
     public function authorRegisterPage(){
@@ -129,9 +130,14 @@ class AppController extends Controller
     public function editorComment(Request $request){
         $id = $request->has('pid') ? $request->get('pid'):'';
         $comment = $request->has('comment') ? $request->get('comment'):'';
+        $file = $_FILES['editorfile']['name'];
+        $fileStore = 'upload/'.$file;
+      
+        move_uploaded_file($_FILES['editorfile']['tmp_name'],$fileStore);
 
         Paper::where('id','=',$id)->update([
             'editor_comment'=>$comment,
+            'editor_file'=>$fileStore,
         ]);
         return back()->with('msg','Comment Added');
     }
@@ -143,8 +149,20 @@ class AppController extends Controller
         ]);
         return back()->with('msg','Send For Revision');
     }
+    
 
-    public function incompleteSubmission($user){
+    public function editortoReviewer(Request $request){
+        $id = $request->has('pid') ? $request->get('pid'):'';
+        $reviewer = $request->has('reviewer') ? $request->get('reviewer'):'';
+       
+        Paper::where('id','=',$id)->update([
+            'status'=>2,
+            'selected_reviewer'=>$reviewer,
+        ]);
+        return back()->with('msg','Send For Review');
+    }
+
+    public function revissionSubmission($user){
         $type = User::select('type')->where('id','=',$user)->first();
         $papers ='';
         if($type->type == 'author'){
@@ -164,9 +182,13 @@ class AppController extends Controller
             $papers = Paper::select('*')->where('author','=',$user)
             ->where('status','=',2)->get();
         }else{
-            $papers = Paper::select('*')->where('status','=',2)->get();
+            $papers =
+             //Paper::select('*')->where('status','=',2)->get();
+
+            DB::table('papers')->select('papers.*','users.name')->join('users','users.id','=','papers.selected_reviewer')
+            ->where('status','=',2)->get();
         }
-        
+        //return $papers;
         return view('editor-pending',compact('papers'));
     }
 

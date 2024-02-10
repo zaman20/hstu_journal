@@ -52,7 +52,11 @@
                     @php $count++;@endphp
                <tr>
                     <td>{{$count}}</td>
-                    <td>{{$paper->name}}</td>
+                    <td>
+                      <a href="{{url('/processed-paper/user='.$paper->id)}}">
+                        {{$paper->name}}
+                      </a>
+                    </td>
                     <td>{{$paper->email}}</td>
                     <td>
                         <a href="#" data-id="{{$paper->id}}" class="btn btn-danger dlt-btn" title="Delete"><i class="fa-solid fa-trash"></i></a>
