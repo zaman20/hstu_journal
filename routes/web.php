@@ -39,4 +39,5 @@ Route::post('/add-reviewer',[AppController::class,'addReviewer']);
 Route::get('/reviewers',[AppController::class,'reviewers'])->name('editor3');
 Route::post('/dlt-reviewer',[AppController::class,'dltReviewer']);
 Route::post('/dlt-paper',[AppController::class,'dltPaper']);
+Route::post('/type',[AppController::class,'type'])->name('type');
 

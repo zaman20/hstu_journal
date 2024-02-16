@@ -21,17 +21,19 @@
                 <?php echo csrf_field(); ?>
                 <div class="form-box" id="page1">
                     <h2>Article Type Selection</h2>
-                    <select name="type" id="" class="form-select">
+                    <select name="type" id="type" class="form-select">
                         <option value="Full Length Article">Full Length Article</option>
                         <option value="Manuscript">Manuscript</option>
                         <option value="Short Length">Short length</option>
                     </select>
-                    <a data-id="1" class="next mt-2 btn btn-secondary">Next</a>
+                    
+                    <a data-id="1" data-action="/type" data-author="<?php echo e(session('id')); ?>" class="next mt-2 btn btn-secondary">Next</a>
                 </div>
 
                 <div class="form-box" class="form-control" id="page2">
                     <h2>Attach Files </h2>
                     <input name="authorfile" type="file">
+                    <input name="id" id="s_id" type="text">
                     <a data-id="2" class="back btn btn-warning">Back</a>
                     <a data-id="2" class="next btn btn-secondary">Next</a>
                 </div>
@@ -90,7 +92,8 @@
                 </form>
 
             </div>
-
+            
+            
 
         </div>
 

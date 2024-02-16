@@ -2,18 +2,41 @@ $(document).ready(function(){
   let pageNum = 1;
   $('.next').on('click',function(){
         let id = $(this).data('id');
+        var url = $(this).data('action');
+        var author = $(this).data('author');
+
         let next = id+1;
         let prev = id;
         
+        
         let nextPage = '#page'+next;
         let prevPage = '#page'+prev;
-          let progressBar ='#p'+next;
+        let progressBar ='#p'+next;
 
+       
         $(progressBar).addClass('active');
         $(nextPage).show();
         $(nextPage).css('left','0');
         $(nextPage).css('visibility','visible');
         $(prevPage).hide();
+
+        if( id ==1){
+          let type = $('#type').val();
+         
+          //console.log(type);
+
+          $.ajax({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:url,
+            method: 'POST',
+            data: {type:type, author:author},
+            success:function(data){
+              $('#s_id').val(data);
+            }
+       });
+        }
 
   });
 

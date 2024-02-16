@@ -10,17 +10,16 @@
             <div class="middle-part pt-3">
                 <h3>Revision</h3>
                 <ul>
-                    <li><a href="">Submissions Needing Revision  (0)</a></li>
-                    <li><a href="">Revisions Sent Back to Author  (0)</a></li>
-                    <li><a href="">Incomplete Submissions Being Revised  (0)</a></li>
-                    <li><a href="">Revisions Waiting for Author's Approval  (0)</a></li>
-                    <li><a href="">Revisions Being Processed  (0)</a></li>
-                    <li><a href="">Declined Revisions  (0)</a></li>
+                    <li><a href="{{url('/submission-in-revission/user='.session('id'))}}">Submissions Needing Revision</a></li>
+                    <li><a href="">Incomplete Submissions Being Revised </a></li>
+                    <li><a href="{{url('/author-pending-paper')}}">Waiting for Editor's Approval</a></li>
+                    <li><a href="{{url('/processed-paper/user='.session('id'))}}">Revisions Being Processed</a></li>
+                    <li><a href="">Declined Revisions</a></li>
                 </ul>
 
                 <h3>Completed</h3>
                 <ul>
-                    <li><a href="">Submissions with a Decision  (0)</a></li>
+                    <li><a href="">Completed submission</a></li>
                     
                 </ul>
             </div>

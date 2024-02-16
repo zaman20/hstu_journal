@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Paper;
 use App\Models\User;
+use App\Models\Incomplete;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -231,5 +232,19 @@ class AppController extends Controller
         Paper::where('id','=',$id)->delete();
 
         return back()->with('msg','Deleted!');
+    }
+
+    public function type(Request $request){
+        $type = $request->get('type');
+        $author = $request->get('author');
+        
+
+        Incomplete::insert([
+            'author'=>$author,
+            'type'=>$type,
+        ]);
+        $max = Incomplete::max('id');
+        return $max;
+
     }
 }

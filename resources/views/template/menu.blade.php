@@ -9,7 +9,7 @@
         <a href="">Incomplete Submissions</a></li>
     
     <li class="{{ Request::routeIs('author4') ? 'menuactive' : '' }}">
-        <a href="{{url('/author-incomplete-submission')}}"><a href="{{url('/author-pending-paper')}}">Submissions Waiting for Editor Approval</a></li>
+        <a href="{{url('/author-pending-paper')}}">Submissions Waiting for Editor Approval</a></li>
     <li class="{{ Request::routeIs('editor4') ? 'menuactive' : '' }}">
         <a href="{{url('/submission-in-revission/user='.session('id'))}}">Submissions Need Revision</a></li>
    
