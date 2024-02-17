@@ -20,7 +20,6 @@ class AppController extends Controller
 
     public function paperSubmit(Request $request){
         $type = $request->has('type') ? $request->get('type'):'';
-       
         $class = $request->has('classification') ? $request->get('classification'):'';
         $reviewers = $request->has('reviewers') ? $request->get('reviewers'):'';
         $language = $request->has('language') ? $request->get('language'):'';
@@ -28,7 +27,10 @@ class AppController extends Controller
         $title = $request->has('title') ? $request->get('title'):'';
         $abstract = $request->has('abstract') ? $request->get('abstract'):'';
         $keyword = $request->has('keyword') ? $request->get('keyword'):'';
-        $author = $request->has('author') ? $request->get('author'):'';;
+        $author = $request->has('author') ? $request->get('author'):'';
+
+        $s_id = $request->has('sid') ? $request->get('sid'):'';
+
         $file = $_FILES['authorfile']['name'];
         $fileStore = 'upload/'.$file;
       
@@ -46,6 +48,8 @@ class AppController extends Controller
             'abstract'=>$abstract,
             'keyword'=>$keyword,
         ]);
+        Incomplete::where('id','=',$s_id)->Delete();
+
         return view('author-dashboard')->with('msg','Paper Submited, Please wait for the review.Thanks!');
 
     }
@@ -234,7 +238,7 @@ class AppController extends Controller
         return back()->with('msg','Deleted!');
     }
 
-    public function type(Request $request){
+    public function inc1(Request $request){
         $type = $request->get('type');
         $author = $request->get('author');
         
@@ -247,4 +251,65 @@ class AppController extends Controller
         return $max;
 
     }
+    public function inc2(Request $request){
+        $cdata = $request->get('cdata');
+        $sid = $request->get('sid');
+
+        Incomplete::where('id','=',$sid)->update([
+            'classification'=>$cdata,
+        ]);
+    
+        return $sid;
+
+    }
+    public function inc3(Request $request){
+        $cdata = $request->get('cdata');
+        $sid = $request->get('sid');
+
+        Incomplete::where('id','=',$sid)->update([
+            'reviewers'=>$cdata,
+        ]);
+    
+        return $sid. ' '.$cdata;
+
+        
+    }
+    public function inc4(Request $request){
+        $cdata = $request->get('cdata');
+        $sid = $request->get('sid');
+
+        Incomplete::where('id','=',$sid)->update([
+            'language'=>$cdata,
+        ]);
+    
+        return $sid;
+
+    }
+    public function inc5(Request $request){
+        $cdata = $request->get('cdata');
+        $sid = $request->get('sid');
+
+        Incomplete::where('id','=',$sid)->update([
+            'author_comment'=>$cdata,
+        ]);
+    
+        return $sid;
+
+    }
+    public function inc6(Request $request){
+        $title = $request->get('title');
+        $abstract = $request->get('abstract');
+        $keyword = $request->get('keyword');
+        $sid = $request->get('sid');
+
+        Incomplete::where('id','=',$sid)->update([
+            'title'=>$title,
+            'abstract'=>$abstract,
+            'keyword'=>$keyword,
+        ]);
+    
+        return $sid;
+
+    }
+  
 }

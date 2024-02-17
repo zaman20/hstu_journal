@@ -39,5 +39,11 @@ Route::post('/add-reviewer',[AppController::class,'addReviewer']);
 Route::get('/reviewers',[AppController::class,'reviewers'])->name('editor3');
 Route::post('/dlt-reviewer',[AppController::class,'dltReviewer']);
 Route::post('/dlt-paper',[AppController::class,'dltPaper']);
-Route::post('/type',[AppController::class,'type'])->name('type');
+Route::post('/inc1',[AppController::class,'inc1']);
+Route::post('/inc2',[AppController::class,'inc2']);
+Route::post('/inc3',[AppController::class,'inc3']);
+Route::post('/inc4',[AppController::class,'inc4']);
+Route::post('/inc5',[AppController::class,'inc5']);
+Route::post('/inc6',[AppController::class,'inc6']);
+
 

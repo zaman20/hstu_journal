@@ -2,12 +2,11 @@ $(document).ready(function(){
   let pageNum = 1;
   $('.next').on('click',function(){
         let id = $(this).data('id');
-        var url = $(this).data('action');
+       
         var author = $(this).data('author');
 
         let next = id+1;
         let prev = id;
-        
         
         let nextPage = '#page'+next;
         let prevPage = '#page'+prev;
@@ -20,23 +19,113 @@ $(document).ready(function(){
         $(nextPage).css('visibility','visible');
         $(prevPage).hide();
 
+     
         if( id ==1){
-          let type = $('#type').val();
-         
-          //console.log(type);
-
+          var type = $('#type').val();
           $.ajax({
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url:url,
+            url:'/inc1',
             method: 'POST',
             data: {type:type, author:author},
             success:function(data){
               $('#s_id').val(data);
+             
             }
-       });
+          });
+         
+        }else if(id == 2){
+          var cdata = $('input[name="classification"]:checked').val();
+          var sid = $('#s_id').val();
+        
+          $.ajax({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:'/inc2',
+            method: 'POST',
+            data:{cdata:cdata,sid:sid},
+            success:function(data){
+              $('#s_id2').val(data);
+              console.log(data)
+             
+            }
+          });
         }
+        else if(id == 3){
+          var cdata = $('input[name="reviewers"]').val();
+          var sid = $('#s_id2').val();
+      
+        
+          $.ajax({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:'/inc3',
+            method: 'POST',
+            data:{cdata:cdata,sid:sid},
+            success:function(data){
+              console.log(data)
+              $('#s_id3').val(data);
+            }
+          });
+        }
+        else if(id == 4){
+          var cdata = $('input[name="language"]:checked').val();
+          var sid = $('#s_id3').val();
+      
+        
+          $.ajax({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:'/inc4',
+            method: 'POST',
+            data:{cdata:cdata,sid:sid},
+            success:function(data){
+              console.log(data)
+              $('#s_id4').val(data);
+            }
+          });
+        }
+        else if(id == 5){
+          var cdata = $('#comment').val();
+          var sid = $('#s_id4').val();
+      
+          $.ajax({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:'/inc5',
+            method: 'POST',
+            data:{cdata:cdata,sid:sid},
+            success:function(data){
+              console.log(data)
+              $('#s_id5').val(data);
+            }
+          });
+        }
+        else if(id == 6){
+          var title = $('input[name="title"]').val();
+          var abstract = $('input[name="abstract"]').val();
+          var keyword = $('input[name="keyword"]').val();
+          var sid = $('#s_id5').val();
+      
+          $.ajax({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:'/inc6',
+            method: 'POST',
+            data:{title:title,abstract:abstract,keyword:keyword,sid:sid},
+            success:function(data){
+              console.log(data)
+              $('#s_id6').val(data);
+            }
+          });
+        }
+     
 
   });
 
