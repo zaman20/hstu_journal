@@ -50,6 +50,11 @@
             $('.type').val('editor');
             $('#loginForm').submit();
         });
+        
+        $('.reviewer-login').on('click',function(){
+            $('.type').val('reviewer');
+            $('#loginForm').submit();
+        });
     </script>
 </body>
 </html>

@@ -51,6 +51,11 @@
             $('.type').val('editor');
             $('#loginForm').submit();
         });
+        
+        $('.reviewer-login').on('click',function(){
+            $('.type').val('reviewer');
+            $('#loginForm').submit();
+        });
     </script>
 </body>
 </html><?php /**PATH C:\xampp\htdocs\hstu_journal\resources\views/login.blade.php ENDPATH**/ ?>

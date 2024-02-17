@@ -28,10 +28,17 @@
         <a href="{{url('/submission-in-revission/user='.session('id'))}}">Submissions in Revission</a></li>
     <li class="{{ Request::routeIs('author5') ? 'menuactive' : '' }}">
         <a href="{{url('/processed-paper/user='.session('id'))}}">Submissions In Review</a></li>
-    <li class="{{ Request::routeIs('editor6') ? 'menuactive' : '' }}">
-        <a href="">Submissions after Review</a></li>
+    <li class="{{ Request::routeIs('r2') ? 'menuactive' : '' }}">
+        <a href="{{url('/submission-after-review/'.session('id'))}}">Submissions after Review</a></li>
     <li class="{{ Request::routeIs('editor7') ? 'menuactive' : '' }}">
-        <a href="">Submissions Waiting for Approval</a></li>
-   
+        <a href="{{url('/submission-for-approval')}}">Submissions for Approval</a></li>
+
+    @elseif(session('type')=='reviewer')
+    <li class="{{ Request::routeIs('r1') ? 'menuactive' : '' }}">
+        <a href="{{url('/reviewer-dashboard')}}">Dashboard</a></li>
+    <li class="{{ Request::routeIs('author5') ? 'menuactive' : '' }}">
+        <a href="{{url('/processed-paper/user='.session('id'))}}">Papers Need Review</a></li>
+    <li class="{{ Request::routeIs('r2') ? 'menuactive' : '' }}">
+        <a href="{{url('/submission-after-review/'.session('id'))}}">Submissions after Review</a></li>
     @endif
 </ul>

@@ -91,6 +91,10 @@ class AppController extends Controller
         return view('editor-dashboard');
     }
 
+    public function reviewerDashboard(){
+        return view('reviewer-dashboard');
+    }
+
     public function loginAuth(Request $request){
         $name = $request->has('name') ? $request->get('name'):'';
         $pass = $request->has('password') ? $request->get('password'):'';
@@ -98,20 +102,25 @@ class AppController extends Controller
 
         $user = User::select('*')->where('name','=',$name)
         ->where('type','=',$type)->first();
-        //$userCount = $user->count();
+        
 
         if($user){
             $user_id = $user->id;
             $dbuser = $user->name;
             $dbpass = $user->password;
             $dbtype = $user->type;
+
             session(['user' => $dbuser,'type'=>$dbtype,'id'=>$user_id]);
+
             if($name==$dbuser && $pass==$dbpass){
                 if($type==$dbtype && $type=='author'){
                     return redirect('/author-dashboard');
                 }else if($type =='editor' && $type=$dbtype){
                     return redirect('/editor-dashboard');
+                }else if($type =='reviewer' && $type=$dbtype){
+                    return redirect('/reviewer-dashboard');
                 }
+
             }else{
                 return back()->with('msg','Incorrect Login Details');
             }
@@ -133,19 +142,62 @@ class AppController extends Controller
         return view('editor-pending',compact('papers','title'));
     }
 
+    public function submissionAfterReview($reviewer){
+        $type = session('type');
+        if($type == 'reviewer'){
+            $papers = Paper::select('*')->where('selected_reviewer','=',$reviewer)
+            ->where('status','=',3)->get();
+        }
+        else{
+            $papers = Paper::select('*')->where('status','=',3)->get();
+        }
+        $title = "Paper's need approval";
+        return view('editor-pending',compact('papers','title'));
+    }
+
+    public function submissionApproval(){
+        $papers = Paper::select('*')->where('status','=',4)->get();
+
+        $title = "Paper's are ready for approval";
+        return view('editor-pending',compact('papers','title'));
+    }
+
     public function editorComment(Request $request){
         $id = $request->has('pid') ? $request->get('pid'):'';
         $comment = $request->has('comment') ? $request->get('comment'):'';
-        $file = $_FILES['editorfile']['name'];
+        $file = $_FILES['editorFile']['name'];
         $fileStore = 'upload/'.$file;
       
-        move_uploaded_file($_FILES['editorfile']['tmp_name'],$fileStore);
+        move_uploaded_file($_FILES['editorFile']['tmp_name'],$fileStore);
 
         Paper::where('id','=',$id)->update([
             'editor_comment'=>$comment,
             'editor_file'=>$fileStore,
         ]);
         return back()->with('msg','Comment Added');
+    }
+    public function reviewerComment(Request $request){
+        $id = $request->has('pid') ? $request->get('pid'):'';
+        $comment = $request->has('comment') ? $request->get('comment'):'';
+        $file = $_FILES['editorFile']['name'];
+        $fileStore = 'upload/'.$file;
+      
+        move_uploaded_file($_FILES['editorFile']['tmp_name'],$fileStore);
+
+        Paper::where('id','=',$id)->update([
+            'reviewer_comment'=>$comment,
+            'reviewer_file'=>$fileStore,
+            'status'=>3,
+        ]);
+        return back()->with('msg','Comment Added');
+    }
+    
+    public function editorApprove(Request $request){
+        $id = $request->has('pid') ? $request->get('pid'):'';
+        Paper::where('id','=',$id)->update([
+            'status'=>4,
+        ]);
+        return back()->with('msg','Paper sent for Final Approval');
     }
 
     public function editortoRevision(Request $request){

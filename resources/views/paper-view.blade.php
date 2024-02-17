@@ -75,17 +75,39 @@
                         </td>
                     </tr>
             </table>
+
+            <h3>Reviewer Suggestion</h3>
+            <table class="table table-warning">
+                    <tr>
+                        <td>Reviwer Comments:</td>
+                        <td> File:</td>
+                    </tr>
+                    <tr>
+                        <td>{{$paper->reviewer_comment}}</td>
+                        <td>
+                        <a href="/{{$paper->reviewer_file}}" download class="btn btn-danger">Download File <i class="fa-solid fa-cloud-arrow-down"></i></a>
+                        </td>
+                    </tr>
+            </table>
             @endif
 
            @if(session('type')=='editor')
-           <form action="/editor-comment" method="post" enctype="multipart/filedata">
+           <form action="/editor-comment" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="pid" value="{{$paper->id}}">
-                <label for="">Add Comments</label><br>
+                <label for="">Add Comments (Editor)</label><br>
                 <textarea name="comment" class="form-control" cols="30" rows="10"></textarea>
                 <input type="file" name="editorFile" class="form-control my-2">
                 <input type="submit" value="Add Comment" class="btn btn-primary my-2">
            </form>
+                @if($paper->status==3)
+                <form action="/editor-approve" method="post">
+                        @csrf
+                        <input type="hidden" name="pid" value="{{$paper->id}}">
+                        
+                        <input type="submit" value="Send for approval" class="btn btn-success my-2">
+                </form>
+                @endif
            <form action="/editor-to-revision" method="post" >
                 @csrf
                 <input type="hidden" name="pid" value="{{$paper->id}}">
@@ -94,10 +116,8 @@
                     Select Reviewer
             </button>
             </form>
-            <!-- ============================================ -->
-           <!-- Button trigger modal -->
-           
-           
+
+            <!-- ================Assign reviewer============================ -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -125,9 +145,20 @@
                 </div>
                 </div>
            <!-- ============================================ -->
+           @elseif(session('type')=='reviewer')
+           <form action="/reviewer-comment" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="pid" value="{{$paper->id}}">
+                <label for="">Add Comments ( Reviewer)</label><br>
+                <textarea name="comment" class="form-control" cols="30" rows="10"></textarea>
+                <input type="file" name="editorFile" class="form-control my-2">
+                <input type="submit" value="Add Comment" class="btn btn-warning my-2">
+           </form>
+            
            @endif
-        </div>
 
+
+        </div>
     </div>
 
 </div>

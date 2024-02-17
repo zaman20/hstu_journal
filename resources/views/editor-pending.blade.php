@@ -38,7 +38,9 @@
                     <td>{{$paper->name}}</td>
                     <td>
                         <a href="{{url('/paper-view/'.$paper->id)}}" class="btn btn-primary" title="View"><i class="fa-solid fa-eye"></i></a>
+                        @if(session('type')=='editor' || session('type')== 'author')
                         <a href="#" data-id="{{$paper->id}}" class="btn btn-danger dlt-btn" title="Delete"><i class="fa-solid fa-trash"></i></a>
+                        @endif
                     </td>
                     
                </tr>
