@@ -1,5 +1,28 @@
 $(document).ready(function(){
-  let pageNum = 1;
+  $('.dlt-btn').on('click',function(){
+    //alert('hi');
+    let id = $(this).data('id');
+    $('#setId').val(id);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+        $('#dltForm').submit();
+      }
+    });
+  });
   $('.next').on('click',function(){
         let id = $(this).data('id');
        
@@ -21,6 +44,7 @@ $(document).ready(function(){
 
      
         if( id ==1){
+    
           var type = $('#type').val();
           $.ajax({
             headers: {
@@ -124,6 +148,8 @@ $(document).ready(function(){
               $('#s_id6').val(data);
             }
           });
+        }else{
+          console.log('Eror');
         }
      
 
@@ -147,29 +173,7 @@ $(document).ready(function(){
 
   });
 
-  $('.dlt-btn').on('click',function(){
-    let id = $(this).data('id');
-    $('#setId').val(id);
-
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
-        $('#dltForm').submit();
-      }
-    });
-  })
+  
 
 
 });

@@ -5,8 +5,8 @@
         <a href="{{route('dashboard')}}">Dashboard</a></li>
     <li class="{{ Request::routeIs('author1') ? 'menuactive' : '' }}">
         <a href="{{url('/author-submit')}}">Submit New Manuscript</a></li>
-    <li class="{{ Request::routeIs('author3') ? 'menuactive' : '' }}">
-        <a href="">Incomplete Submissions</a></li>
+    <li class="{{ Request::routeIs('editor5') ? 'menuactive' : '' }}">
+        <a href="{{url('/incomplete-submission/user='.session('id'))}}">Incomplete Submissions</a></li>
     
     <li class="{{ Request::routeIs('author4') ? 'menuactive' : '' }}">
         <a href="{{url('/author-pending-paper')}}">Submissions Waiting for Editor Approval</a></li>

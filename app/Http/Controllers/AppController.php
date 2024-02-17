@@ -129,7 +129,8 @@ class AppController extends Controller
 
     public function editorPendingPaper(){
         $papers = Paper::select('*')->where('status','=',0)->get();
-        return view('editor-pending',compact('papers'));
+        $title = "Paper's need approval";
+        return view('editor-pending',compact('papers','title'));
     }
 
     public function editorComment(Request $request){
@@ -176,10 +177,26 @@ class AppController extends Controller
         }else{
             $papers = Paper::select('*')->where('status','=',1)->get();
         }
-        
-        return view('editor-pending',compact('papers'));
+        $title = "Paper's need some revission";
+        return view('editor-pending',compact('papers','title'));
     }
 
+    public function incompleteSubmission($user){
+        $type = User::select('type')->where('id','=',$user)->first();
+        $papers ='';
+        if($type->type == 'author'){
+            $papers = Incomplete::select('*')->where('author','=',$user)->orderBy('id','DESC')->get();
+        }else{
+            $papers = Incomplete::select('*')->get();
+        }
+        
+        return view('incomplete-submission',compact('papers'));
+    }
+
+    public function incompletePaperView($id){
+        $paper = Incomplete::select('*')->where('id','=',$id)->first();
+        return view('incomplete-paper-view',compact('paper'));
+    }
     public function processedPaper($user){
         $type = User::select('type')->where('id','=',$user)->first();
         $papers ='';
@@ -193,15 +210,16 @@ class AppController extends Controller
             DB::table('papers')->select('papers.*','users.name')->join('users','users.id','=','papers.selected_reviewer')
             ->where('status','=',2)->get();
         }
-        //return $papers;
-        return view('editor-pending',compact('papers'));
+        $title = "Paper's are being  processed";
+        return view('editor-pending',compact('papers','title'));
     }
 
-    public function authorIncompleteSubmission(){
+    public function authorRevision(){
         $author = session('id');
         $papers = Paper::select('*')->where('status','=',1)->
         where('author','=',$author)->get();
-        return view('editor-pending',compact('papers'));
+        $title = "Paper's need some revission";
+        return view('editor-pending',compact('papers','title'));
     }
     
     public function reviewers(){
@@ -234,6 +252,13 @@ class AppController extends Controller
     public function dltPaper(Request $request){
         $id = $request->has('get_id') ? $request->get('get_id'):'';
         Paper::where('id','=',$id)->delete();
+
+        return back()->with('msg','Deleted!');
+    }
+
+    public function dltInc(Request $request){
+        $id = $request->has('get_id') ? $request->get('get_id'):'';
+        Incomplete::where('id','=',$id)->delete();
 
         return back()->with('msg','Deleted!');
     }

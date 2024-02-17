@@ -1,6 +1,6 @@
 <div class="header-area">
     <div class="left-part">
-        <h2> HSTU in Journal and Research</h2>
+        <h2>ScholarTrack </h2>
     </div>
     <div class="right-part">
         <?php if(session()->has('user')): ?>
