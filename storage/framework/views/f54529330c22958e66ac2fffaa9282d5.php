@@ -32,9 +32,9 @@
             </div>
 
             <div class="register-box">
-                <a href="">Send Login Details</a>
+                <a href=""></a>
                 <a href="<?php echo e(url('/author-register')); ?>">Register Now</a>
-                <a href="">Login Help</a>
+                <a href="tel:01990000">Contact</a>
             </div>
            
         </div>

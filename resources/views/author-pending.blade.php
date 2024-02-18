@@ -50,6 +50,5 @@
   </form>
 <!-- ================================================== -->
 
-@include('template.header')
-
+@include('template.footer')
 @endsection()

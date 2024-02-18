@@ -100,10 +100,8 @@
   </form>
 <!-- ================================================== -->
 
-@include('template.header')
+@include('template.footer')
 
 @endsection()
 
 
-@include('template.header')
-@endsection()

@@ -109,6 +109,6 @@
 </div>
 
 
-@include('template.header')
+@include('template.footer')
 
 @endsection()

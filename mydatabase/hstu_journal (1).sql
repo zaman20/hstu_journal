@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2024 at 07:12 PM
+-- Generation Time: Feb 18, 2024 at 12:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,6 +40,37 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `incompletes`
+--
+
+CREATE TABLE `incompletes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `author` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `classification` varchar(255) DEFAULT NULL,
+  `reviewers` varchar(255) DEFAULT NULL,
+  `language` varchar(255) DEFAULT NULL,
+  `author_comment` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `abstract` varchar(255) DEFAULT NULL,
+  `keyword` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `incompletes`
+--
+
+INSERT INTO `incompletes` (`id`, `author`, `type`, `classification`, `reviewers`, `language`, `author_comment`, `title`, `abstract`, `keyword`, `created_at`, `updated_at`) VALUES
+(63, '1', 'Full Length Article', 'Cognitive Science', 'Mamun sir', 'No', 'dddddddd', 'FIrst paper', 'Computer Biology', 'computer,biology', '2024-02-17 10:08:11', '2024-02-17 04:08:31'),
+(65, '1', 'Full Length Article', 'Clinical Trial', 'Mamun sir', 'No', 'nothing else', 'test paper 3', 'Medical paper', 'computer,biology', '2024-02-17 10:14:56', '2024-02-17 04:15:23'),
+(66, '1', 'Full Length Article', 'Clinical Trial', 'Mamun sir', 'No', 'nothing else', 'test paper 3', 'Medical paper', 'computer,biology', '2024-02-17 10:16:07', '2024-02-17 04:16:16'),
+(67, '1', 'Full Length Article', 'Clinical Trial', 'Nitu Mam', 'No', 'This is the comment', 'test paper 3', 'Computer Biology', 'computer,biology', '2024-02-17 10:17:12', '2024-02-17 04:17:57');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -59,7 +90,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (4, '2024_02_05_181750_create_users_table', 1),
 (5, '2024_02_05_181816_create_papers_table', 1),
-(6, '2024_02_07_202637_create_reviewers_table', 2);
+(6, '2024_02_07_202637_create_reviewers_table', 2),
+(7, '2024_02_16_194025_create_incompletes_table', 3);
 
 -- --------------------------------------------------------
 
@@ -69,21 +101,22 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `papers` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `author` varchar(255) NOT NULL,
-  `article_type` varchar(255) NOT NULL,
-  `files` varchar(255) NOT NULL,
-  `classification` varchar(255) NOT NULL,
+  `author` varchar(255) DEFAULT NULL,
+  `article_type` varchar(255) DEFAULT NULL,
+  `files` varchar(255) DEFAULT NULL,
+  `classification` varchar(255) DEFAULT NULL,
   `reviewers` varchar(255) DEFAULT NULL,
-  `language` varchar(255) NOT NULL,
+  `language` varchar(255) DEFAULT NULL,
   `author_comment` varchar(255) DEFAULT NULL,
   `editor_comment` varchar(2555) DEFAULT NULL,
   `reviewer_comment` varchar(2555) DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
-  `abstract` varchar(255) NOT NULL,
-  `keyword` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
-  `editor_file` varchar(255) NOT NULL,
-  `selected_reviewer` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `abstract` varchar(255) DEFAULT NULL,
+  `keyword` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT 0,
+  `editor_file` varchar(255) DEFAULT NULL,
+  `reviewer_file` varchar(2555) DEFAULT NULL,
+  `selected_reviewer` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -92,13 +125,14 @@ CREATE TABLE `papers` (
 -- Dumping data for table `papers`
 --
 
-INSERT INTO `papers` (`id`, `author`, `article_type`, `files`, `classification`, `reviewers`, `language`, `author_comment`, `editor_comment`, `reviewer_comment`, `title`, `abstract`, `keyword`, `status`, `editor_file`, `selected_reviewer`, `created_at`, `updated_at`) VALUES
-(1, '1', 'Full Length Article', 'upload/Lecture06_unlocked.pdf', 'Biomedical Statistics', 'Mamun sir', 'Yes', 'No comments', 'Need more keyword', NULL, 'Test Paper 1', 'Computer Biology', 'computer,biology', 1, '', 0, NULL, '2024-02-07 14:12:08'),
-(2, '3', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 2', 'Medical paper', 'medical,paper', 1, '', 0, NULL, NULL),
-(3, '1', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 3', 'Medical paper', 'medical,paper', 2, '', 5, NULL, NULL),
-(4, '1', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 4', 'Medical paper', 'medical,paper', 2, '', 5, NULL, '2024-02-10 11:26:12'),
-(5, '3', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 5', 'Medical paper', 'medical,paper', 0, '', 0, NULL, NULL),
-(6, '1', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Pape6 2', 'Medical paper', 'medical,paper', 0, '', 0, NULL, NULL);
+INSERT INTO `papers` (`id`, `author`, `article_type`, `files`, `classification`, `reviewers`, `language`, `author_comment`, `editor_comment`, `reviewer_comment`, `title`, `abstract`, `keyword`, `status`, `editor_file`, `reviewer_file`, `selected_reviewer`, `created_at`, `updated_at`) VALUES
+(1, '1', 'Full Length Article', 'upload/Lecture06_unlocked.pdf', 'Biomedical Statistics', 'Mamun sir', 'Yes', 'No comments', 'Need more keyword', NULL, 'Test Paper 1', 'Computer Biology', 'computer,biology', 1, '', NULL, 0, NULL, '2024-02-07 14:12:08'),
+(2, '3', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 2', 'Medical paper', 'medical,paper', 1, '', NULL, 0, NULL, NULL),
+(3, '1', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, 'ddd', NULL, 'Test Paper 3', 'Medical paper', 'medical,paper', 2, 'upload/Project Report working.docx', NULL, 5, NULL, '2024-02-17 06:42:08'),
+(4, '1', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 4', 'Medical paper', 'medical,paper', 3, '', NULL, 5, NULL, '2024-02-10 11:26:12'),
+(5, '3', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 5', 'Medical paper', 'medical,paper', 4, '', NULL, 0, NULL, '2024-02-17 07:16:51'),
+(6, '1', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Pape6 2', 'Medical paper', 'medical,paper', 0, '', NULL, 0, NULL, NULL),
+(7, '1', 'Full Length Article', 'upload/4-1-Project(1).pdf', 'Computional Biology', 'Nitu Mam', 'Not Applicable', 'no comments', NULL, NULL, 'Test 10', 'Computer Biology', 'computer,biology', 0, NULL, NULL, NULL, '2024-02-17 10:19:56', '2024-02-17 10:19:56');
 
 -- --------------------------------------------------------
 
@@ -152,7 +186,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `type`, `created_at`, `updated_at`) VALUES
-(1, 'Zaman', 'zamanador111@gmail.com', '1234', 'author', NULL, NULL),
+(1, 'iram', 'zamanador111@gmail.com', '1234', 'author', NULL, NULL),
 (2, 'ador', 'adorzaman18@gmail.com', '1234', 'editor', '2024-02-07 16:14:35', '2024-02-07 16:14:35'),
 (3, 'arju', 'arju@gmail.com', '1234', 'author', '2024-02-07 21:00:46', '2024-02-07 21:00:46'),
 (5, 'Mamun sir', 'mamun@gmail.com', '1234', 'reviewer', '2024-02-08 12:37:22', '2024-02-08 12:37:22');
@@ -167,6 +201,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `type`, `created_at`, `u
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `incompletes`
+--
+ALTER TABLE `incompletes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -211,16 +251,22 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `incompletes`
+--
+ALTER TABLE `incompletes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `papers`
 --
 ALTER TABLE `papers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
