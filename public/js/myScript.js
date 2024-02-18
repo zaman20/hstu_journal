@@ -60,9 +60,14 @@ $(document).ready(function(){
           });
          
         }else if(id == 2){
-          var cdata = $('input[name="classification"]:checked').val();
-          var sid = $('#s_id').val();
+          var sel = $('input[type=checkbox]:checked').map(function(_, el) {
+            return $(el).val();
+          }).get();
         
+    // console.log (cdata.toString());
+          var sid = $('#s_id').val();
+          var cdata = sel.toString();
+  
           $.ajax({
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

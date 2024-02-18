@@ -27,7 +27,19 @@
                     <td>{{$paper->abstract}}</td>
                     <td>{{$paper->article_type}}</td>
                     <td>
-                        <span  class="bg-warning">In Reviewing</span>
+                    @if($paper->status == 0)
+                        <span class="bg-info">Pending For Editor Approval</span>
+                        @elseif($paper->status == 1)
+                            <span class="bg-danger">In Revision</span>
+                        @elseif($paper->status == 2)
+                            <span class="bg-warning">In Review</span>
+                        @elseif($paper->status == 3)
+                            <span class="bg-warning">Reviewed</span>
+                        @elseif($paper->status == 4)
+                            <span class="bg-success">Waiting for approval</span>
+                        @elseif($paper->status == 5)
+                            <span class="bg-dark">Declined</span>
+                        @endif
                     </td>
 
                     <td>{{$paper->reviewers}}</td>
@@ -64,7 +76,7 @@
                 <th>Abstract</th>
                 <th>Type</th>
                 <th>Status</th>
-                <th>Reviewers</th>
+                <th>Suggested Reviewers</th>
                 <th>Action</th>
                </tr>
                     @php $count=0;@endphp

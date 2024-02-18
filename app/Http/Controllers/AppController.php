@@ -20,7 +20,12 @@ class AppController extends Controller
 
     public function paperSubmit(Request $request){
         $type = $request->has('type') ? $request->get('type'):'';
-        $class = $request->has('classification') ? $request->get('classification'):'';
+        $classf[] = $request->has('classification') ? $request->get('classification'):'';
+        $class ='';
+        foreach($classf as $clas){
+            $class = implode(',',$clas);
+        }
+
         $reviewers = $request->has('reviewers') ? $request->get('reviewers'):'';
         $language = $request->has('language') ? $request->get('language'):'';
         $comments = $request->has('comments') ? $request->get('comments'):'';
@@ -139,7 +144,7 @@ class AppController extends Controller
     public function editorPendingPaper(){
         $papers = Paper::select('*')->where('status','=',0)->get();
         $title = "Paper's need approval";
-        return view('editor-pending',compact('papers','title'));
+        return view('processed-paper',compact('papers','title'));
     }
 
     public function submissionAfterReview($reviewer){
@@ -149,14 +154,21 @@ class AppController extends Controller
             ->where('status','=',3)->get();
         }
         else{
-            $papers = Paper::select('*')->where('status','=',3)->get();
+           
+            $papers =
+            DB::table('papers')->select('papers.*','users.name')->join('users','users.id','=','papers.selected_reviewer')
+            ->where('status','=',3)->get();
         }
         $title = "Paper's need approval";
         return view('editor-pending',compact('papers','title'));
     }
 
     public function submissionApproval(){
-        $papers = Paper::select('*')->where('status','=',4)->get();
+
+        $papers =
+            DB::table('papers')->select('papers.*','users.name')
+            ->join('users','users.id','=','papers.selected_reviewer')
+            ->where('status','=',4)->get();
 
         $title = "Paper's are ready for approval";
         return view('editor-pending',compact('papers','title'));
@@ -176,6 +188,15 @@ class AppController extends Controller
         ]);
         return back()->with('msg','Comment Added');
     }
+
+    public function makeDeclined(Request $request){
+        $id = $request->has('pid') ? $request->get('pid'):'';
+        Paper::where('id','=',$id)->update([
+            'status'=>5,
+        ]);
+        return back()->with('msg','Paper Declined');
+    }
+
     public function reviewerComment(Request $request){
         $id = $request->has('pid') ? $request->get('pid'):'';
         $comment = $request->has('comment') ? $request->get('comment'):'';
@@ -233,6 +254,20 @@ class AppController extends Controller
         return view('editor-pending',compact('papers','title'));
     }
 
+    public function declinedPaper($user){
+        $type = User::select('type')->where('id','=',$user)->first();
+        $papers ='';
+        if($type->type == 'author'){
+            $papers = Paper::select('*')->where('author','=',$user)
+            ->where('status','=',5)->get();
+        }else{
+            $papers = Paper::select('*')->where('status','=',5)->get();
+        }
+        $title = "Declined Paper's ";
+        return view('editor-pending',compact('papers','title'));
+    }
+
+
     public function incompleteSubmission($user){
         $type = User::select('type')->where('id','=',$user)->first();
         $papers ='';
@@ -257,8 +292,6 @@ class AppController extends Controller
             ->where('status','=',2)->get();
         }else{
             $papers =
-             //Paper::select('*')->where('status','=',2)->get();
-
             DB::table('papers')->select('papers.*','users.name')->join('users','users.id','=','papers.selected_reviewer')
             ->where('status','=',2)->get();
         }
@@ -336,7 +369,7 @@ class AppController extends Controller
             'classification'=>$cdata,
         ]);
     
-        return $sid;
+        return $sid .$cdata;
 
     }
     public function inc3(Request $request){

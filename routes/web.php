@@ -37,6 +37,7 @@ Route::post('/editor-to-revision',[AppController::class,'editortoRevision']);
 Route::post('/editor-to-reviewer',[AppController::class,'editortoReviewer']);
 Route::get('/submission-in-revission/user={user}',[AppController::class,'revissionSubmission'])->name('editor4');
 Route::get('/incomplete-submission/user={user}',[AppController::class,'incompleteSubmission'])->name('editor5');
+Route::get('/declined-paper/user={user}',[AppController::class,'declinedPaper'])->name('r3');
 Route::get('/incomplete-paper-view/{id}',[AppController::class,'incompletePaperView']);
 Route::get('/reviewer-dashboard',[AppController::class,'reviewerDashboard'])->name('r1');
 
@@ -53,5 +54,6 @@ Route::post('/inc5',[AppController::class,'inc5']);
 Route::post('/inc6',[AppController::class,'inc6']);
 Route::post('/dlt-inc',[AppController::class,'dltInc']);
 Route::post('/editor-approve',[AppController::class,'editorApprove']);
+Route::post('/declined',[AppController::class,'makeDeclined']);
 
 

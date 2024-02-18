@@ -37,6 +37,12 @@
                             <span class="bg-danger">In Revision</span>
                         @elseif($paper->status == 2)
                             <span class="bg-warning">In Review</span>
+                        @elseif($paper->status == 3)
+                            <span class="bg-warning">Reviewed</span>
+                        @elseif($paper->status == 4)
+                            <span class="bg-success">Waiting for approval</span>
+                        @elseif($paper->status == 5)
+                            <span class="bg-dark">Declined</span>
                         @endif
                     </td>
                     
@@ -70,25 +76,27 @@
                     </tr>
                     <tr>
                         <td>{{$paper->editor_comment}}</td>
-                        <td>
-                        <a href="/{{$paper->editor_file}}" download class="btn btn-danger">Download File <i class="fa-solid fa-cloud-arrow-down"></i></a>
-                        </td>
-                    </tr>
-            </table>
 
-            <h3>Reviewer Suggestion</h3>
-            <table class="table table-warning">
-                    <tr>
-                        <td>Reviwer Comments:</td>
-                        <td> File:</td>
-                    </tr>
-                    <tr>
-                        <td>{{$paper->reviewer_comment}}</td>
                         <td>
-                        <a href="/{{$paper->reviewer_file}}" download class="btn btn-danger">Download File <i class="fa-solid fa-cloud-arrow-down"></i></a>
+                            <a href="/{{$paper->editor_file}}" download class="btn btn-danger">Download File <i class="fa-solid fa-cloud-arrow-down"></i></a>
                         </td>
                     </tr>
             </table>
+          @endif
+            @if($paper->status > 1)
+                <h3>Reviewer Suggestion</h3>
+                <table class="table table-warning">
+                        <tr>
+                            <td>Reviwer Comments:</td>
+                            <td> File:</td>
+                        </tr>
+                        <tr>
+                            <td>{{$paper->reviewer_comment}}</td>
+                            <td>
+                            <a href="/{{$paper->reviewer_file}}" download class="btn btn-danger">Download File <i class="fa-solid fa-cloud-arrow-down"></i></a>
+                            </td>
+                        </tr>
+                </table>
             @endif
 
            @if(session('type')=='editor')
@@ -98,14 +106,19 @@
                 <label for="">Add Comments (Editor)</label><br>
                 <textarea name="comment" class="form-control" cols="30" rows="10"></textarea>
                 <input type="file" name="editorFile" class="form-control my-2">
-                <input type="submit" value="Add Comment" class="btn btn-primary my-2">
+                <input type="submit" value="Add Comment" class="btn btn-primary btn-sm my-2">
+           </form>
+           <form action="/declined" method="post">
+                @csrf
+                <input type="hidden" name="pid" value="{{$paper->id}}">
+                <input type="submit" value="Declined Paper" class="btn btn-danger btn-sm my-2">
            </form>
                 @if($paper->status==3)
                 <form action="/editor-approve" method="post">
                         @csrf
                         <input type="hidden" name="pid" value="{{$paper->id}}">
                         
-                        <input type="submit" value="Send for approval" class="btn btn-success my-2">
+                        <input type="submit" value="Send for approval" class="btn btn-success btn-sm my-2">
                 </form>
                 @endif
            <form action="/editor-to-revision" method="post" >
@@ -152,7 +165,7 @@
                 <label for="">Add Comments ( Reviewer)</label><br>
                 <textarea name="comment" class="form-control" cols="30" rows="10"></textarea>
                 <input type="file" name="editorFile" class="form-control my-2">
-                <input type="submit" value="Add Comment" class="btn btn-warning my-2">
+                <input type="submit" value="Add Comment" class="btn btn-warning btn-sm my-2">
            </form>
             
            @endif

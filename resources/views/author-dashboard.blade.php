@@ -11,10 +11,10 @@
                 <h3>Revision</h3>
                 <ul>
                     <li><a href="{{url('/submission-in-revission/user='.session('id'))}}">Submissions Needing Revision</a></li>
-                    <li><a href="">Incomplete Submissions Being Revised </a></li>
+                    <li><a href="{{url('/incomplete-submission/user='.session('id'))}}">Incomplete Submissions Being Revised </a></li>
                     <li><a href="{{url('/author-pending-paper')}}">Waiting for Editor's Approval</a></li>
-                    <li><a href="{{url('/processed-paper/user='.session('id'))}}">Revisions Being Processed</a></li>
-                    <li><a href="">Declined Revisions</a></li>
+                    <li><a href="{{url('/processed-paper/user='.session('id'))}}">Paper's Being Processed</a></li>
+                    <li><a href="{{url('/declined-paper/user='.session('id'))}}">Declined Paper</a></li>
                 </ul>
 
                 <h3>Completed</h3>
@@ -48,14 +48,7 @@
 
         @if(session()->has('msg'))
         {{session('msg')}}
-        <!-- <script>
-            alert(hi);
-            Swal.fire({
-            title: "Good job!",
-            text: "{{session('msg')}}",
-            icon: "success"
-            });
-        </script> -->
+      
         @endif
        
     </div>

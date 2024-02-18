@@ -15,7 +15,7 @@
                 <th>Abstract</th>
                 <th>Type</th>
                 <th>Status</th>
-                <th>Reviewers</th>
+                <th>Suggested Reviewers</th>
                 <th>Action</th>
                </tr>
                     @php $count=0;@endphp

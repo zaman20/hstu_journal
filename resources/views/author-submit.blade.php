@@ -33,10 +33,10 @@
 
                 <div class="form-box" class="form-control" id="page2">
                     <h2>Classification </h2>
-                    <input name="classification" type="checkbox" class="form-check-input" value="Biomedical Statistics">Biomedical Statistics <br>
-                    <input name="classification" type="checkbox" class="form-check-input" value="Clinical Trial">Clinical Trials <br>
-                    <input name="classification" type="checkbox" class="form-check-input" value="Cognitive Science">Cognitive Science <br>
-                    <input name="classification" type="checkbox" class="form-check-input" value="Computional Biology">Computional Bilogy <br>
+                    <input name="classification[]" type="checkbox" class="form-check-input" value="Biomedical Statistics">Biomedical Statistics <br>
+                    <input name="classification[]" type="checkbox" class="form-check-input" value="Clinical Trial">Clinical Trials <br>
+                    <input name="classification[]" type="checkbox" class="form-check-input" value="Cognitive Science">Cognitive Science <br>
+                    <input name="classification[]" type="checkbox" class="form-check-input" value="Computional Biology">Computional Bilogy <br>
 
                     <input name="id" id="s_id" type="hidden">
                     <a data-id="2" class="back btn btn-warning">Back</a>
@@ -92,7 +92,7 @@
                 <div class="form-box" id="page7">
                     <h2>Attach Files </h2>
                         <input name="sid" id="s_id6" type="hidden">
-                        <input name="authorfile" id="file" type="file">
+                        <input name="authorfile" id="file" type="file" required>
                         <input type="hidden" value="{{session('id')}}" name="author">
                     <button  class="paper-submit btn btn-secondary mt-2">Submit</button>
                 </div>

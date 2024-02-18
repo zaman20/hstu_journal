@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2024 at 12:03 PM
+-- Generation Time: Feb 18, 2024 at 09:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -63,10 +63,10 @@ CREATE TABLE `incompletes` (
 --
 
 INSERT INTO `incompletes` (`id`, `author`, `type`, `classification`, `reviewers`, `language`, `author_comment`, `title`, `abstract`, `keyword`, `created_at`, `updated_at`) VALUES
-(63, '1', 'Full Length Article', 'Cognitive Science', 'Mamun sir', 'No', 'dddddddd', 'FIrst paper', 'Computer Biology', 'computer,biology', '2024-02-17 10:08:11', '2024-02-17 04:08:31'),
-(65, '1', 'Full Length Article', 'Clinical Trial', 'Mamun sir', 'No', 'nothing else', 'test paper 3', 'Medical paper', 'computer,biology', '2024-02-17 10:14:56', '2024-02-17 04:15:23'),
-(66, '1', 'Full Length Article', 'Clinical Trial', 'Mamun sir', 'No', 'nothing else', 'test paper 3', 'Medical paper', 'computer,biology', '2024-02-17 10:16:07', '2024-02-17 04:16:16'),
-(67, '1', 'Full Length Article', 'Clinical Trial', 'Nitu Mam', 'No', 'This is the comment', 'test paper 3', 'Computer Biology', 'computer,biology', '2024-02-17 10:17:12', '2024-02-17 04:17:57');
+(66, '3', 'Full Length Article', 'Clinical Trial', 'Mamun sir', 'No', 'nothing else', 'test paper 3', 'Medical paper', 'computer,biology', '2024-02-17 10:16:07', '2024-02-17 04:16:16'),
+(71, '3', 'Full Length Article', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-18 16:59:17', '2024-02-18 16:59:17'),
+(72, '1', 'Full Length Article', 'Biomedical Statistics', 'Mamun sir', 'Yes', 'This is my first paper', 'This is demo', 'Computer Biologys', 'computer,biology', '2024-02-18 16:59:29', '2024-02-18 11:04:12'),
+(97, '1', 'Manuscript', 'Biomedical Statistics,Cognitive Science', NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-18 18:32:59', '2024-02-18 12:33:03');
 
 -- --------------------------------------------------------
 
@@ -126,13 +126,19 @@ CREATE TABLE `papers` (
 --
 
 INSERT INTO `papers` (`id`, `author`, `article_type`, `files`, `classification`, `reviewers`, `language`, `author_comment`, `editor_comment`, `reviewer_comment`, `title`, `abstract`, `keyword`, `status`, `editor_file`, `reviewer_file`, `selected_reviewer`, `created_at`, `updated_at`) VALUES
-(1, '1', 'Full Length Article', 'upload/Lecture06_unlocked.pdf', 'Biomedical Statistics', 'Mamun sir', 'Yes', 'No comments', 'Need more keyword', NULL, 'Test Paper 1', 'Computer Biology', 'computer,biology', 1, '', NULL, 0, NULL, '2024-02-07 14:12:08'),
-(2, '3', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 2', 'Medical paper', 'medical,paper', 1, '', NULL, 0, NULL, NULL),
-(3, '1', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, 'ddd', NULL, 'Test Paper 3', 'Medical paper', 'medical,paper', 2, 'upload/Project Report working.docx', NULL, 5, NULL, '2024-02-17 06:42:08'),
-(4, '1', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 4', 'Medical paper', 'medical,paper', 3, '', NULL, 5, NULL, '2024-02-10 11:26:12'),
-(5, '3', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 5', 'Medical paper', 'medical,paper', 4, '', NULL, 0, NULL, '2024-02-17 07:16:51'),
-(6, '1', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Pape6 2', 'Medical paper', 'medical,paper', 0, '', NULL, 0, NULL, NULL),
-(7, '1', 'Full Length Article', 'upload/4-1-Project(1).pdf', 'Computional Biology', 'Nitu Mam', 'Not Applicable', 'no comments', NULL, NULL, 'Test 10', 'Computer Biology', 'computer,biology', 0, NULL, NULL, NULL, '2024-02-17 10:19:56', '2024-02-17 10:19:56');
+(1, '3', 'Full Length Article', 'upload/Lecture06_unlocked.pdf', 'Biomedical Statistics', 'Mamun sir', 'Yes', 'No comments', 'Need more keyword', NULL, 'Test Paper 1', 'Computer Biology', 'computer,biology', 1, '', NULL, 0, NULL, '2024-02-07 14:12:08'),
+(2, '3', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 2', 'Medical paper', 'medical,paper', 5, '', NULL, 0, NULL, NULL),
+(3, '1', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, 'ddd', 'This is not fit for submit', 'Test Paper 3', 'Medical paper', 'medical,paper', 5, 'upload/Project Report working.docx', 'upload/', 5, NULL, '2024-02-18 11:20:59'),
+(5, '3', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 5', 'Medical paper', 'medical,paper', 5, '', NULL, 5, NULL, '2024-02-18 13:55:48'),
+(6, '1', 'Short Length', 'upload/Lecture04-unlocked.pdf', 'Clinical Trial', NULL, 'Yes', NULL, NULL, NULL, 'Test Paper 6 ', 'Medical paper', 'medical,paper', 0, '', NULL, 5, NULL, '2024-02-18 11:16:33'),
+(7, '1', 'Full Length Article', 'upload/4-1-Project(1).pdf', 'Computional Biology', 'Nitu Mam', 'Not Applicable', 'no comments', NULL, NULL, 'Test Paper 7', 'Computer Biology', 'computer,biology', 5, NULL, NULL, NULL, '2024-02-17 10:19:56', '2024-02-17 10:19:56'),
+(8, '1', 'Full Length Article', 'upload/Scholar-an-automated-journal-management-system-final-report-4-1..pdf', 'Biomedical Statistics', 'Mamun sir', 'Yes', NULL, NULL, 'No further changes needed. It\'s ready for publishing', 'The Psychology of Decision Making: Insights from Behavioral Economics\"', 'Computer Biologys', 'computer,biology', 4, NULL, 'upload/', 5, '2024-02-18 17:05:17', '2024-02-18 13:54:58'),
+(9, '3', 'Full Length Article', 'upload/Scholar-an-automated-journal-management-system-final-report-4-1..pdf', 'Clinical Trial', 'Mamun sir', 'No', NULL, 'Need More keyword', NULL, 'Understanding Climate Change Adaptation Strategies in Vulnerable Coastal Communities', 'Medical paper', 'computer,biology', 1, 'upload/', NULL, NULL, '2024-02-18 17:56:32', '2024-02-18 14:00:49'),
+(10, '1', 'Full Length Article', 'upload/Scholar-an-automated-journal-management-system-final-report-4-1..pdf', 'Clinical Trial', 'Nitu Mam', 'No', NULL, 'need more', NULL, 'Innovations in Renewable Energy Technologies: Towards a Sustainable Future', 'Computer Biology', 'computer,biology', 1, 'upload/', NULL, NULL, '2024-02-18 17:57:40', '2024-02-18 13:41:01'),
+(11, '1', 'Full Length Article', 'upload/', 'Cognitive Science', NULL, NULL, NULL, 'Go to reviewer', NULL, 'The Role of Social Media in Political Mobilization: A Comparative Analysis', NULL, NULL, 2, 'upload/', NULL, 5, '2024-02-18 18:01:07', '2024-02-18 14:02:07'),
+(12, '3', 'Full Length Article', 'upload/', 'Clinical Trial', 'Nitu Mam', 'No', NULL, NULL, NULL, 'Unraveling the Mysteries of Dark Matter: Recent Advances and Future Prospects\"', 'Computer Biology', 'computer,biology', 0, NULL, NULL, NULL, '2024-02-18 18:01:29', '2024-02-18 18:01:29'),
+(13, '3', 'Full Length Article', 'upload/', 'Clinical Trial,Biomedical Statistics', 'Mamun sir', 'No', NULL, NULL, NULL, 'Exploring the Impact of Artificial Intelligence on Healthcare: Opportunities and Challenges', 'Medical paper', 'computer,biology', 0, NULL, NULL, NULL, '2024-02-18 18:41:37', '2024-02-18 18:41:37'),
+(14, '1', 'Full Length Article', 'upload/Scholar-an-automated-journal-management-system-final-report-4-1..pdf', 'Biomedical Statistics', NULL, NULL, NULL, NULL, NULL, 'Cultural Appropriation in the Fashion Industry: Ethics and Identity', 'Computer Biology', 'computer,biology', 0, NULL, NULL, NULL, '2024-02-18 19:28:12', '2024-02-18 19:28:12');
 
 -- --------------------------------------------------------
 
@@ -254,7 +260,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `incompletes`
 --
 ALTER TABLE `incompletes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -266,7 +272,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `papers`
 --
 ALTER TABLE `papers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

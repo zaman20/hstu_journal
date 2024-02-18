@@ -10,10 +10,10 @@
                 <h3>Revision</h3>
                 <ul>
                     <li><a href="<?php echo e(url('/submission-in-revission/user='.session('id'))); ?>">Submissions Needing Revision</a></li>
-                    <li><a href="">Incomplete Submissions Being Revised </a></li>
+                    <li><a href="<?php echo e(url('/incomplete-submission/user='.session('id'))); ?>">Incomplete Submissions Being Revised </a></li>
                     <li><a href="<?php echo e(url('/author-pending-paper')); ?>">Waiting for Editor's Approval</a></li>
-                    <li><a href="<?php echo e(url('/processed-paper/user='.session('id'))); ?>">Revisions Being Processed</a></li>
-                    <li><a href="">Declined Revisions</a></li>
+                    <li><a href="<?php echo e(url('/processed-paper/user='.session('id'))); ?>">Paper's Being Processed</a></li>
+                    <li><a href="<?php echo e(url('/declined-paper/user='.session('id'))); ?>">Declined Paper</a></li>
                 </ul>
 
                 <h3>Completed</h3>
@@ -48,18 +48,11 @@
         <?php if(session()->has('msg')): ?>
         <?php echo e(session('msg')); ?>
 
-        <!-- <script>
-            alert(hi);
-            Swal.fire({
-            title: "Good job!",
-            text: "<?php echo e(session('msg')); ?>",
-            icon: "success"
-            });
-        </script> -->
+      
         <?php endif; ?>
        
     </div>
 
-    <?php echo $__env->make('template.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('template.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('template.body', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\hstu_journal\resources\views/author-dashboard.blade.php ENDPATH**/ ?>
